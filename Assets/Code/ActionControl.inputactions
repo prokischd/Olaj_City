@@ -1,14 +1,14 @@
 {
-    "name": "PlayerControl",
+    "name": "ActionControl",
     "maps": [
         {
-            "name": "Gameplay",
-            "id": "cdce6591-9854-4f08-9581-096a92be3f53",
+            "name": "GamePlay",
+            "id": "4b30ef67-a9d6-4730-9383-9cc024f6446a",
             "actions": [
                 {
                     "name": "Move",
                     "type": "Value",
-                    "id": "0901199c-7d88-48a0-a7b4-161c17a3516c",
+                    "id": "e70bff93-8923-4967-9660-9f0b6f050819",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
@@ -16,19 +16,8 @@
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "8c18ff90-9a6e-49e4-b265-2a0fba06dfa4",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "2D Vector",
-                    "id": "71803965-0e30-405e-8e20-0b280d412ef0",
+                    "id": "7c0ef897-ae45-4307-b466-2c0ca5ca87ae",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -39,7 +28,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "5c299bc3-1e90-47db-b5a6-ae4b441d66bc",
+                    "id": "d352d19e-1635-4eca-9347-4b7b129f0b76",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -50,7 +39,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "0d7faf7a-1ace-4ad6-abbc-611d82fdfed0",
+                    "id": "c0be89ab-3814-4ee8-8287-30a3d4011b30",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -61,7 +50,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "1ab103ac-ec84-4a40-90d0-d9d63e5f2e0a",
+                    "id": "572642f5-f37d-4f5c-9bdf-d058570b1428",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -72,7 +61,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "d906ef73-4d14-4da0-8e16-7bd6032ec607",
+                    "id": "bc67411f-49d9-4fe5-bf22-f2e8fa2cb2b5",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",

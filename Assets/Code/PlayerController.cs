@@ -1,42 +1,37 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	private PlayerControl playercontrol;
+	private ActionControl playercontrol;
 	private Vector2 MoveDirection;
 
 	public float MovementSpeed = 5.0f;
 	public Rigidbody2D rb;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-		MoveDirection = gameObject.transform.position;
-		playercontrol = new PlayerControl();
-
-		playercontrol.Gameplay.Move.performed += Move;
-		playercontrol.Gameplay.Move.canceled += Stop;
-	}
-
-	private void Stop(InputAction.CallbackContext obj)
-	{
+		playercontrol = new ActionControl();
 		MoveDirection = Vector2.zero;
+
+		playercontrol.GamePlay.Move.performed += ctx => MoveDirection = ctx.ReadValue<Vector2>();
+		playercontrol.GamePlay.Move.canceled += ctx => MoveDirection = Vector2.zero;
 	}
 
-	private void Move(InputAction.CallbackContext obj)
+	void OnEnable()
 	{
-		MoveDirection = obj.ReadValue<Vector2>();
+		playercontrol.GamePlay.Enable();
 	}
 
+	void OnDisable()
+	{
+		playercontrol.GamePlay.Disable();
+	}
 
 	// Update is called once per frame
 	void Update()
     {
-		rb.MovePosition(MoveDirection);
+		rb.MovePosition(new Vector2(transform.position.x, transform.position.y)  + MoveDirection);
 		Debug.Log(MoveDirection);
     }
 }
