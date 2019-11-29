@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+	public static float PLAYER_MOVEMENTSPEED = 5.0f;
 	private ActionControl playercontrol;
 	private Vector2 MoveDirection;
 
@@ -41,9 +42,12 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
     {
-		rb.MovePosition(Get2DPosition() + MoveDirection);
+		rb.MovePosition(Move());
     }
-
+	private Vector2 Move()
+	{
+		return (Get2DPosition() + MoveDirection);
+	}
 	private Vector2 Get2DPosition()
 	{
 		return new Vector2(transform.position.x, transform.position.y);
