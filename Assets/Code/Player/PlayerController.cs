@@ -62,4 +62,10 @@ public class PlayerController : MonoBehaviour
 	{
 		return new Vector2(transform.position.x, transform.position.y);
 	}
+
+    //TODO
+    public bool IsPowerUpActive()
+    {
+        return false;
+    }
 }
