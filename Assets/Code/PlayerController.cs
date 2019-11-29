@@ -6,16 +6,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-	PlayerControl playercontrol;
-	public Vector2 MoveDirection;
+	private PlayerControl playercontrol;
+	private Vector2 MoveDirection;
+
 	public float MovementSpeed = 5.0f;
 	public Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
-		rb = GetComponent<Rigidbody2D>();
+		MoveDirection = gameObject.transform.position;
 		playercontrol = new PlayerControl();
+
 		playercontrol.Gameplay.Move.performed += Move;
 		playercontrol.Gameplay.Move.canceled += Stop;
 	}
@@ -35,5 +37,6 @@ public class PlayerController : MonoBehaviour
 	void Update()
     {
 		rb.MovePosition(MoveDirection);
+		Debug.Log(MoveDirection);
     }
 }
