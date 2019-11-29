@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,8 +16,17 @@ public class PlayerController : MonoBehaviour
 		playercontrol = new ActionControl();
 		MoveDirection = Vector2.zero;
 
-		playercontrol.GamePlay.Move.performed += ctx => MoveDirection = ctx.ReadValue<Vector2>();
+		playercontrol.GamePlay.Move.performed += Move;
 		playercontrol.GamePlay.Move.canceled += ctx => MoveDirection = Vector2.zero;
+	}
+
+	private void Move(InputAction.CallbackContext obj)
+	{
+		MoveDirection = obj.ReadValue<Vector2>();
+	}
+	private void Stop(InputAction.CallbackContext obj)
+	{
+		MoveDirection = Vector2.zero;
 	}
 
 	void OnEnable()
@@ -28,10 +39,13 @@ public class PlayerController : MonoBehaviour
 		playercontrol.GamePlay.Disable();
 	}
 
-	// Update is called once per frame
 	void Update()
     {
-		rb.MovePosition(new Vector2(transform.position.x, transform.position.y)  + MoveDirection);
-		Debug.Log(MoveDirection);
+		rb.MovePosition(Get2DPosition() + MoveDirection);
     }
+
+	private Vector2 Get2DPosition()
+	{
+		return new Vector2(transform.position.x, transform.position.y);
+	}
 }
