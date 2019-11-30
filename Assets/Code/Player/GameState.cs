@@ -31,19 +31,11 @@ public class GameState : MonoBehaviour
     public float powerUpTimer = 15.0f;
     public float playerMovementSpeed = DEFAULT_PLAYER_MOVEMENTSPEED;
     public float playerHP = 100.0f;
-<<<<<<< HEAD
     public bool reverseControls = DEFAULT_REVERSE_CONTROLS;
     public float playerProjectileForce = DEFAULT_PLAYER_PROJECTILE_FORCE;
 
     //Enemy
     public float enemyMovementSpeed = DEFAULT_ENEMY_MOVEMENT_SPEED;
-=======
-    public bool reverseControls = false;
-    public float playerProjectileForce = 300.0f;
-
-    //Enemy
-    public float enemyMovementSpeed = 0.2f;
->>>>>>> b09844994e48ea44f5ae5af134f4430547b5aab2
 
 	//Spawn
 	public float spawnerProjectileForce = DEFAULT_SPAWN_PROJECTILE_FORCE;
