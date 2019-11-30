@@ -17,7 +17,7 @@ public class GameState : MonoBehaviour
     public static bool friendlyFire = false;
 
     //Player
-    public static PowerUpType activePowerUp = PowerUpType.None;
+    public static PowerUpType activePowerUp;
     public static float powerUpTimer = 15.0f;
     public static float playerMovementSpeed = 1.0f;
     public static float playerHP = 100.0f;
@@ -25,13 +25,14 @@ public class GameState : MonoBehaviour
 
     //Enemy
     public static float enemyMovementSpeed = 1.0f;
+    public static float enemyHP = 1.0f;
 
     //Spawner
     public static float spawnForce = 20.0f;
     public static int spawnCount = 4;
     public static float spawnTimerSeconds = 1.0f;
 
-    //Weather
+    //Environment
     public static float strength = 1.0f;
     public static EnvironmentType activeEnvironment;
 }

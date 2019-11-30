@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum PowerUpType
 {
-    None, ExtraSpeed, LowerSpeed, BigAOE, ReverseControls
+    ExtraSpeed, LowerSpeed, BigAOE, ReverseControls
 }

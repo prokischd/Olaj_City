@@ -20,12 +20,12 @@ public class UnwantedItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && !other.gameObject.GetComponent<PlayerController>().IsPowerUpActive())
+        if (other.gameObject.tag == "Player")
         {
             System.Random rng = new System.Random();
-            //start from 2 -> Exclude None type
-            GameState.activePowerUp = (PowerUpType) rng.Next(2, Enum.GetNames(typeof (PowerUpType)).Length);
+            GameState.activePowerUp = (PowerUpType) rng.Next(1, Enum.GetNames(typeof (PowerUpType)).Length);
             GameState.activeEnvironment = (EnvironmentType) rng.Next(1, Enum.GetNames(typeof(EnvironmentType)).Length);
+            PowerUp.Action();
             Destroy(this.gameObject);
         }
 

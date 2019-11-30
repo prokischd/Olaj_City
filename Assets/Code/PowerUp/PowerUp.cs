@@ -10,8 +10,9 @@ public class PowerUp : MonoBehaviour
         player = GameObject.Find(Names.PLAYER_TAG);
     }
 
-    public void Action()
+    public static void Action()
     {
+        GameState.powerUpTimer = 15.0f;
 
         switch (GameState.activePowerUp)
         {
@@ -39,6 +40,21 @@ public class PowerUp : MonoBehaviour
         
         switch (GameState.activeEnvironment)
         {
+            case EnvironmentType.Blue:
+                Debug.Log("activate blizzard weather");
+                break;
+
+            case EnvironmentType.Red:
+                Debug.Log("activate lava weather");
+                break;
+
+            case EnvironmentType.Green:
+                Debug.Log("activate green weather");
+                break;
+
+            default:
+                Debug.Log("Default");
+                break;
         }
     }
 }

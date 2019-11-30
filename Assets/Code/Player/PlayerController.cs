@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 	private ActionControl playercontrol;
 	private Vector2 MoveDirection;
 	private PlayerStats playerStats;
+    private float time = 0.0f;
 
 	private Vector2 rightStickPos = Vector2.up;
 	void Awake()
@@ -58,7 +59,20 @@ public class PlayerController : MonoBehaviour
 		rb.MovePosition(pos);
 		AdjustCamera(pos);
 		RotateLine();
-	}
+        ManagePowerUpTimer();
+
+        if(GameState.activeEnvironment == EnvironmentType.Blue)
+        {
+            Debug.Log("blue weapon");
+        }else if (GameState.activeEnvironment == EnvironmentType.Red)
+        {
+            Debug.Log("red weapon");
+        }
+        else if (GameState.activeEnvironment == EnvironmentType.Green)
+        {
+            Debug.Log("green weapon");
+        }
+    }
 
 	private void RotateLine()
 	{
@@ -90,14 +104,29 @@ public class PlayerController : MonoBehaviour
 		return new Vector2(transform.position.x, transform.position.y);
 	}
 
-    //TODO
-    public bool IsPowerUpActive()
-    {
-        return false;
-    }
-
 	public void Hit(int hitDamage)
 	{
 		playerStats.LoseHP(hitDamage);
 	}
+
+    public void LoseHpEverySecond()
+    {
+        time += Time.deltaTime;
+
+        if(time >= 1)
+        {
+            playerStats.LoseHP(1);
+            time = 0f;
+        }
+    }
+
+    public void ManagePowerUpTimer()
+    {
+        GameState.powerUpTimer -= Time.deltaTime;
+        if (GameState.powerUpTimer <= 0)
+        {
+            LoseHpEverySecond();
+        }
+    }
+}
 }
