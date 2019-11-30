@@ -26,8 +26,8 @@ public class UnwantedItem : MonoBehaviour
             System.Random rng = new System.Random();
 			GameState gs = GameObject.Find("GameManager").GetComponent<GameState>();
             gs.ResetGameStateToDefault();
-            gs.activePowerUp = (PowerUpType) rng.Next(1, Enum.GetNames(typeof (PowerUpType)).Length);		
-			gs.ActiveEnvironment = (EnvironmentType) rng.Next(1, Enum.GetNames(typeof(EnvironmentType)).Length);
+            gs.activePowerUp = (PowerUpType) rng.Next(0, Enum.GetNames(typeof (PowerUpType)).Length);		
+			gs.ActiveEnvironment = (EnvironmentType) rng.Next(0, Enum.GetNames(typeof(EnvironmentType)).Length);
             Destroy(this.gameObject);
         }
 
