@@ -1,37 +1,75 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
-    //Time
-    public static float timeFlow = 1.0f;
+	public static GameState GetGameState()
+	{
+		return GameObject.Find("GameManager").GetComponent<GameState>();
+	}
+	//Time
+	public float timeFlow = 1.0f;
 
-    //Damage
-    public static float damageModifier = 1.0f;
+    //Dama
+    public float damageModifier = 1.0f;
 
-    //Projectiles
-    public static float AOE = 2.5f;
-    public static float projectileSpeed = 3.0f;
-    public static bool bouncingBullets = false;
-    public static bool friendlyFire = false;
+    //Proj
+    public float AOE = 2.5f;
+    public float projectileSpeed = 3.0f;
+    public bool bouncingBullets = false;
+    public bool friendlyFire = false;
+	public float SpawnRadius = 3.0f;
 
-    //Player
-    public static PowerUpType activePowerUp = PowerUpType.None;
-    public static float powerUpTimer = 15.0f;
-    public static float playerMovementSpeed = 1.0f;
-    public static float playerHP = 100.0f;
-    public static bool controls = true;
+    //Play
+    public PowerUpType activePowerUp = PowerUpType.None;
+    public float powerUpTimer = 15.0f;
+    public float playerMovementSpeed = 1.0f;
+    public float playerHP = 100.0f;
+    public bool controls = true;
 
-    //Enemy
-    public static float enemyMovementSpeed = 1.0f;
+    //Enem
+    public float enemyMovementSpeed = 1.0f;
 
-    //Spawner
-    public static float spawnForce = 20.0f;
-    public static int spawnCount = 4;
-    public static float spawnTimerSeconds = 1.0f;
+    //Spaw
+    public float spawnForce = 20.0f;
+    public int spawnCount = 4;
+    public float spawnTimerSeconds = 0.6f;
 
-    //Weather
-    public static float strength = 1.0f;
-    public static EnvironmentType activeEnvironment;
+    //Weat
+    public float strength = 1.0f;
+
+	private EnvironmentType activeEnvironmentType;
+	public EnvironmentType ActiveEnvironment
+	{
+		get
+		{
+			return activeEnvironmentType;
+		}
+		set
+		{
+			activeEnvironmentType = value;
+			SetEnvironment(activeEnvironmentType);
+		}
+	}
+	public GameObject player;
+	public GameObject environment;
+
+
+	private void Start()
+	{
+		player = GameObject.FindWithTag(Names.PLAYER_TAG);
+		SetEnvironment(EnvironmentType.Red);
+	}
+
+	private void Update()
+	{
+
+	}
+
+	private void SetEnvironment(EnvironmentType activeEnvironmentType)
+	{
+		player.GetComponent<PlayerController>().SetState(activeEnvironmentType);
+	}
 }

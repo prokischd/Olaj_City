@@ -13,7 +13,7 @@ public class PowerUp : MonoBehaviour
     public void Action()
     {
 
-        switch (GameState.activePowerUp)
+        switch (GameState.GetGameState().activePowerUp)
         {
             case PowerUpType.ExtraSpeed: 
                 Debug.Log("extraspeed");
@@ -37,8 +37,8 @@ public class PowerUp : MonoBehaviour
 
         }
         
-        switch (GameState.activeEnvironment)
+       /* switch (GameState.activeEnvironment)
         {
-        }
+        }*/
     }
 }

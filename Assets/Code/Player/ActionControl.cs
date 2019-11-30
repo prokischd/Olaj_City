@@ -41,6 +41,14 @@ public class @ActionControl : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""f5e5dbf1-2940-4359-a6ae-320124d58bee"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -131,6 +139,28 @@ public class @ActionControl : IInputActionCollection, IDisposable
                     ""action"": ""MouseAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c579bcc4-659f-46fe-8ef5-17848d21a68e"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4af10270-20b6-46e3-b5b5-112393cb20c2"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -142,6 +172,7 @@ public class @ActionControl : IInputActionCollection, IDisposable
         m_GamePlay_Move = m_GamePlay.FindAction("Move", throwIfNotFound: true);
         m_GamePlay_Aim = m_GamePlay.FindAction("Aim", throwIfNotFound: true);
         m_GamePlay_MouseAim = m_GamePlay.FindAction("MouseAim", throwIfNotFound: true);
+        m_GamePlay_Shoot = m_GamePlay.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -194,6 +225,7 @@ public class @ActionControl : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_Move;
     private readonly InputAction m_GamePlay_Aim;
     private readonly InputAction m_GamePlay_MouseAim;
+    private readonly InputAction m_GamePlay_Shoot;
     public struct GamePlayActions
     {
         private @ActionControl m_Wrapper;
@@ -201,6 +233,7 @@ public class @ActionControl : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_GamePlay_Move;
         public InputAction @Aim => m_Wrapper.m_GamePlay_Aim;
         public InputAction @MouseAim => m_Wrapper.m_GamePlay_MouseAim;
+        public InputAction @Shoot => m_Wrapper.m_GamePlay_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -219,6 +252,9 @@ public class @ActionControl : IInputActionCollection, IDisposable
                 @MouseAim.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMouseAim;
                 @MouseAim.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMouseAim;
                 @MouseAim.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMouseAim;
+                @Shoot.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnShoot;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -232,6 +268,9 @@ public class @ActionControl : IInputActionCollection, IDisposable
                 @MouseAim.started += instance.OnMouseAim;
                 @MouseAim.performed += instance.OnMouseAim;
                 @MouseAim.canceled += instance.OnMouseAim;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
             }
         }
     }
@@ -241,5 +280,6 @@ public class @ActionControl : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnMouseAim(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }

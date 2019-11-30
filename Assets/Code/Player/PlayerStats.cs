@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameState.playerHP <= 0)
+        if(GameState.GetGameState().playerHP <= 0)
 		{
 			Debug.Log("You lost!");
 		}
@@ -22,6 +22,6 @@ public class PlayerStats : MonoBehaviour
 
 	public void LoseHP(float hitDamage)
 	{
-		GameState.playerHP -= hitDamage * GameState.damageModifier;
+		GameState.GetGameState().playerHP -= hitDamage * GameState.GetGameState().damageModifier;
 	}
 }

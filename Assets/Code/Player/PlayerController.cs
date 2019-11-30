@@ -15,19 +15,50 @@ public class PlayerController : MonoBehaviour
 	private PlayerStats playerStats;
 
 	private Vector2 rightStickPos = Vector2.up;
+	private EnvironmentType environmentType;
+	private float timer = GameState.GetGameState().spawnTimerSeconds;
+
+
+	//RED
+	public GameObject redObject;
+	public bool redShoot = false;
+	//GREE
+	//BLUE
+
 	void Awake()
     {
 		playercontrol = new ActionControl();
 		camera = Camera.main;
 		aimTransform = transform.Find("AimObject");
 		MoveDirection = Vector2.zero;
-
 		playerStats = GetComponent<PlayerStats>();
+
 		playercontrol.GamePlay.Enable();
+
 		playercontrol.GamePlay.Move.performed += Move;
 		playercontrol.GamePlay.Move.canceled += Stop;
+
 		playercontrol.GamePlay.Aim.performed += ControllerRightStick;
+		
 		playercontrol.GamePlay.MouseAim.performed += ctx => controllerInput = false;
+		playercontrol.GamePlay.Shoot.performed += Shoot;
+	}
+
+	private void Shoot(InputAction.CallbackContext obj)
+	{
+		switch(environmentType)
+		{
+			case EnvironmentType.Red:
+				if(timer <= 0.0f)
+				{
+					ShootRed();
+					timer = GameState.GetGameState().spawnTimerSeconds;
+				}			
+				break;
+			case EnvironmentType.Green:
+				ShootGreen();
+				break;
+		}
 	}
 
 	private void ControllerRightStick(InputAction.CallbackContext obj)
@@ -54,6 +85,29 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
     {
+		HandleEnvironmentAbilities();
+		HandlePlayer();
+		timer -= Time.deltaTime;
+	}
+
+	private void HandleEnvironmentAbilities()
+	{
+		switch(environmentType)
+		{
+			case EnvironmentType.Red:
+				break;
+			case EnvironmentType.Green:
+				//ShootRNGRocket();
+				break;
+			case EnvironmentType.Blue:
+				//SpawnIce();
+				break;
+		}
+	}
+
+
+	private void HandlePlayer()
+	{
 		Vector2 pos = GetPositionToMove();
 		rb.MovePosition(pos);
 		AdjustCamera(pos);
@@ -83,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
 	private Vector2 GetPositionToMove()
 	{
-		return (Get2DPosition() + MoveDirection * GameState.playerMovementSpeed);
+		return (Get2DPosition() + MoveDirection * GameState.GetGameState().playerMovementSpeed);
 	}
 	private Vector2 Get2DPosition()
 	{
@@ -99,5 +153,41 @@ public class PlayerController : MonoBehaviour
 	public void Hit(int hitDamage)
 	{
 		playerStats.LoseHP(hitDamage);
+	}
+
+	public void SetState(EnvironmentType environmentType)
+	{
+		this.environmentType = environmentType;
+	}
+
+	private void ShootRed()
+	{
+		SpawnProjectiles();
+	}
+
+	private void SpawnProjectiles()
+	{
+		for(int i = 0; i < GameState.GetGameState().spawnCount; i++)
+		{
+			float step = i / (float)GameState.GetGameState().spawnCount;
+			float angle = step * 360;
+			float angleRad = angle * (float)Math.PI / 180.0f;
+			float x = Mathf.Sin(angleRad);
+			float y = Mathf.Cos(angleRad);
+			Vector2 dir = new Vector2(x, y);
+			Spawn(dir);
+		}
+	}
+
+	private void Spawn(Vector2 dir)
+	{
+		Vector3 dir3 = new Vector3(dir.x, dir.y, 0);
+		GameObject go = Instantiate(redObject, position: transform.position + dir3 * GameState.GetGameState().SpawnRadius, Quaternion.identity) as GameObject;
+		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * GameState.GetGameState().spawnForce);
+	}
+
+	private void ShootGreen()
+	{
+		
 	}
 }
