@@ -13,6 +13,7 @@ public class Meteor : MonoBehaviour
         meteorArea = GetComponentInChildren<MeteorArea>();
         meteor = transform.Find("Meteor").gameObject;
         gs = GameState.GetGameState();
+        meteor.transform.localScale = meteor.transform.localScale * gs.AOE;
     }
 
     // Update is called once per frame
@@ -20,7 +21,7 @@ public class Meteor : MonoBehaviour
     {
         if (!meteorArea.destroyed)
         {
-            meteor.transform.Translate(0, -0.15f * Time.deltaTime * gs.spawnerProjectileForce, 0);
+            meteor.transform.Translate(0, -0.1f * Time.deltaTime * gs.meteorSpeed, 0);
         }
     }
 }
