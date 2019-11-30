@@ -11,12 +11,13 @@ public class GameState : MonoBehaviour
 	}
     //Default
     public static float DEFAULT_UNIVERSAL_DAMAGEMODIFIER = 1.0f;
-    public static float DEFAULT_AOE = 2.5f;
+    public static float DEFAULT_AOE = 1.0f;
     public static float DEFAULT_PLAYER_MOVEMENTSPEED = 0.25f;
     public static bool DEFAULT_REVERSE_CONTROLS = false;
     public static float DEFAULT_PLAYER_PROJECTILE_FORCE = 10.0f;
     public static float DEFAULT_ENEMY_MOVEMENT_SPEED = 0.2f;
     public static float DEFAULT_SPAWN_PROJECTILE_FORCE = 1.0f;
+    public static float DEFAULT_METEOR_SPEED = 1.0f;
 
 
     //Damage
@@ -41,6 +42,7 @@ public class GameState : MonoBehaviour
 
 	//Spawn
 	public float spawnerProjectileForce = DEFAULT_SPAWN_PROJECTILE_FORCE;
+    public float meteorSpeed = DEFAULT_METEOR_SPEED;
 	public int spawnCount = 4;
     public float spawnTimerSeconds = 0.6f;
 	public float SpawnRadius = 3.0f;
@@ -102,6 +104,7 @@ public class GameState : MonoBehaviour
         reverseControls = DEFAULT_REVERSE_CONTROLS;
         playerProjectileForce = DEFAULT_PLAYER_PROJECTILE_FORCE;
         enemyMovementSpeed = DEFAULT_ENEMY_MOVEMENT_SPEED;
-        spawnerProjectileForce = DEFAULT_SPAWN_PROJECTILE_FORCE;    
+        spawnerProjectileForce = DEFAULT_SPAWN_PROJECTILE_FORCE;
+        meteorSpeed = DEFAULT_METEOR_SPEED;
     }
 }
