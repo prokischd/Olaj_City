@@ -43,22 +43,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b49e59ebc713b54db55f23b4da9dc2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeFlow: 1
-  damageModifier: 1
+  universalDamageModifier: 1
   AOE: 2.5
-  projectileSpeed: 3
-  bouncingBullets: 0
-  friendlyFire: 0
-  SpawnRadius: 3
   activePowerUp: 0
   powerUpTimer: 15
-  playerMovementSpeed: 1
+  playerMovementSpeed: 0.2
   playerHP: 100
-  controls: 1
-  enemyMovementSpeed: 1
-  spawnForce: 20
+  reverseControls: 0
+  playerProjectileForce: 10
+  enemyMovementSpeed: 0.2
+  spawnerProjectileForce: 1
   spawnCount: 4
   spawnTimerSeconds: 0.6
-  strength: 1
+  SpawnRadius: 3
+  environmentalStrength: 1
   player: {fileID: 0}
   environment: {fileID: 0}
