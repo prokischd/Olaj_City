@@ -12,7 +12,7 @@ public class GameState : MonoBehaviour
     //Default
     public const float DEFAULT_UNIVERSAL_DAMAGEMODIFIER = 1.0f;
     public const float DEFAULT_AOE = 2.5f;
-    public const float DEFAULT_PLAYER_MOVEMENTSPEED = 0.2f;
+    public const float DEFAULT_PLAYER_MOVEMENTSPEED = 0.25f;
     public const bool DEFAULT_REVERSE_CONTROLS = false;
     public const float DEFAULT_PLAYER_PROJECTILE_FORCE = 10.0f;
     public const float DEFAULT_ENEMY_MOVEMENT_SPEED = 0.2f;
@@ -46,6 +46,7 @@ public class GameState : MonoBehaviour
 	//Environment
 	public float environmentalStrength = 1.0f;
 
+    [SerializeField]
 	private EnvironmentType activeEnvironmentType;
 	public EnvironmentType ActiveEnvironment
 	{

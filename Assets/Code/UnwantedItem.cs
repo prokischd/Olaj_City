@@ -28,7 +28,6 @@ public class UnwantedItem : MonoBehaviour
             gs.ResetGameStateToDefault();
             gs.activePowerUp = (PowerUpType) rng.Next(1, Enum.GetNames(typeof (PowerUpType)).Length);		
 			gs.ActiveEnvironment = (EnvironmentType) rng.Next(1, Enum.GetNames(typeof(EnvironmentType)).Length);
-			gs.SetEnvironment(gs.ActiveEnvironment);
             Destroy(this.gameObject);
         }
 
