@@ -76,7 +76,8 @@ public class PowerUp : MonoBehaviour
     public static void BigAOE()
     {
         GameState gs = GameState.GetGameState();
-        gs.AOE += 1.5f;
+        gs.AOE += 0.5f;
+        gs.meteorSpeed += 3.0f; 
     }
 
     public static void FasterTime()
@@ -86,7 +87,7 @@ public class PowerUp : MonoBehaviour
         gs.playerProjectileForce += 5f;
         gs.enemyMovementSpeed += 0.2f;
         gs.spawnerProjectileForce += 0.5f;
-        gs.meteorSpeed += 0.5f;
+        gs.meteorSpeed += 2.5f;
     }
 
     public static void SlowerTime()
@@ -96,7 +97,7 @@ public class PowerUp : MonoBehaviour
         gs.playerProjectileForce -= 5f;
         gs.enemyMovementSpeed -= 0.1f;
         gs.spawnerProjectileForce -= 0.5f;
-        gs.meteorSpeed -= 0.5f;
+        gs.meteorSpeed -= 1.5f;
     }
 
     public static void FasterEnemyProjectiles()

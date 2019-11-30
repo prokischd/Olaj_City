@@ -7,6 +7,8 @@ TagManager:
   - Obstacle
   - ProjectileSpawner
   - Projectile
+  - Area
+  - Meteor
   layers:
   - Default
   - TransparentFX
@@ -16,9 +18,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - EnemyProjectile
   - 
   - 
   - 
