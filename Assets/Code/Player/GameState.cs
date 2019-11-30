@@ -70,6 +70,13 @@ public class GameState : MonoBehaviour
 
 	private void Start()
 	{
+		DEFAULT_UNIVERSAL_DAMAGEMODIFIER = universalDamageModifier;
+		DEFAULT_AOE = AOE;
+		DEFAULT_PLAYER_MOVEMENTSPEED = playerMovementSpeed;
+		DEFAULT_REVERSE_CONTROLS = reverseControls;
+		DEFAULT_PLAYER_PROJECTILE_FORCE = playerProjectileForce;
+		DEFAULT_ENEMY_MOVEMENT_SPEED = enemyMovementSpeed;
+		DEFAULT_SPAWN_PROJECTILE_FORCE = spawnerProjectileForce;
 		player = GameObject.FindWithTag(Names.PLAYER_TAG);
 		ActiveEnvironment = EnvironmentType.Green;
 	}
