@@ -86,6 +86,7 @@ public class PowerUp : MonoBehaviour
         gs.playerProjectileForce += 5f;
         gs.enemyMovementSpeed += 0.2f;
         gs.spawnerProjectileForce += 0.5f;
+        gs.meteorSpeed += 0.5f;
     }
 
     public static void SlowerTime()
@@ -95,12 +96,14 @@ public class PowerUp : MonoBehaviour
         gs.playerProjectileForce -= 5f;
         gs.enemyMovementSpeed -= 0.1f;
         gs.spawnerProjectileForce -= 0.5f;
+        gs.meteorSpeed -= 0.5f;
     }
 
     public static void FasterEnemyProjectiles()
     {
         GameState gs = GameState.GetGameState();
         gs.spawnerProjectileForce += 0.5f;
+        gs.meteorSpeed += 0.5f;
     }
 
     public static void DoubleDamage()
