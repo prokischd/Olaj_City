@@ -24,9 +24,10 @@ public class PlayerController : MonoBehaviour
 
 	//RED
 	public GameObject redObject;
-	public bool redShoot = false;
 	//GREE
+	public GameObject greenObject;
 	//BLUE
+	public GameObject blueObject;
 
 	void Start()
     {
@@ -61,10 +62,30 @@ public class PlayerController : MonoBehaviour
 					shootTimer = gs.spawnTimerSeconds;
 				}			
 				break;
+			case EnvironmentType.Blue:
+				break;
 			case EnvironmentType.Green:
-				ShootGreen();
+				if(shootTimer <= 0.0f)
+				{
+					ShootGreen();
+					shootTimer = gs.spawnTimerSeconds;
+				}			
 				break;
 		}
+	}
+
+	private void ShootBlue()
+	{
+		if(shootTimer <= 0.0f)
+		{
+			SpawnBlue();
+			shootTimer = gs.blueObjectSpawnTime;
+		}
+	}
+
+	private void SpawnBlue()
+	{
+		GameObject go = Instantiate(blueObject, this.transform.position - new Vector3(MoveDirection.x, MoveDirection.y, 0)* 5, Quaternion.identity) as GameObject;
 	}
 
 	private void ControllerRightStick(InputAction.CallbackContext obj)
@@ -109,10 +130,10 @@ public class PlayerController : MonoBehaviour
 			case EnvironmentType.Red:
 				break;
 			case EnvironmentType.Green:
-				//ShootRNGRocket();
+				
 				break;
 			case EnvironmentType.Blue:
-				//SpawnIce();
+				ShootBlue();
 				break;
 		}
 	}
@@ -161,6 +182,12 @@ public class PlayerController : MonoBehaviour
 		playerStats.LoseHP(hitDamage);
 	}
 
+	internal void Heal(int HP)
+	{
+		playerStats.GiveHP(HP);
+	}
+
+
 	public void SetState(EnvironmentType environmentType)
 	{
 		this.environmentType = environmentType;
@@ -194,7 +221,8 @@ public class PlayerController : MonoBehaviour
 
 	private void ShootGreen()
 	{
-		
+		GameObject go = Instantiate(greenObject, position: this.transform.position + aimTransform.forward * gs.SpawnRadius, Quaternion.identity) as GameObject;
+		go.GetComponent<Rigidbody2D>().AddForce(aimTransform.forward * gs.playerProjectileForce);
 	}
 
 	public void LoseHpEverySecond()

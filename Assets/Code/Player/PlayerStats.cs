@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,6 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
 		gs = GameState.GetGameState();
-
 	}
 
     // Update is called once per frame
@@ -24,5 +24,10 @@ public class PlayerStats : MonoBehaviour
 	public void LoseHP(float hitDamage)
 	{
 		gs.playerHP -= hitDamage * gs.universalDamageModifier;
+	}
+
+	internal void GiveHP(int HP)
+	{
+		gs.playerHP += HP;
 	}
 }

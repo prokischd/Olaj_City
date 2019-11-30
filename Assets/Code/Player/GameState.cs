@@ -24,6 +24,7 @@ public class GameState : MonoBehaviour
     public float playerHP = 100.0f;
     public bool reverseControls = false;
     public float playerProjectileForce = 300.0f;
+	public float blueObjectSpawnTime = 1.0f;
 
     //Enemy
     public float enemyMovementSpeed = 0.2f;
@@ -52,12 +53,14 @@ public class GameState : MonoBehaviour
 	}
 	public GameObject player;
 	public GameObject environment;
-
+	internal int blueObjectHitDamage = 10;
+	internal int greenObjectHitDamage = 20;
+	internal float blueObjectDestroyTime = 11.0f;
 
 	private void Start()
 	{
 		player = GameObject.FindWithTag(Names.PLAYER_TAG);
-		SetEnvironment(EnvironmentType.Red);
+		ActiveEnvironment = EnvironmentType.Green;
 	}
 
 	private void Update()
