@@ -28,7 +28,10 @@ public class PlayerController : MonoBehaviour
 	public GameObject greenObject;
 	//BLUE
 	public GameObject blueObject;
-
+	private Vector3 lastMoveDir = Vector3.zero;
+	public float dashSpeed = 50.0f;
+	public float dashDistance = 4.0f;
+	public float dashTimer = 2.0f;
 	void Start()
     {
 		sprite = transform.Find("SpriteObject").GetComponent<SpriteRenderer>();
@@ -49,8 +52,24 @@ public class PlayerController : MonoBehaviour
 		
 		playercontrol.GamePlay.MouseAim.performed += ctx => controllerInput = false;
 		playercontrol.GamePlay.Shoot.performed += Shoot;
+		playercontrol.GamePlay.Dash.performed += Dash;
 	}
 
+	private void Dash(InputAction.CallbackContext obj)
+	{
+		Vector3 pos = transform.position;
+		if(CanDash(MoveDirection, dashDistance))
+		{
+			transform.position += new Vector3(MoveDirection.x, MoveDirection.y,0) * dashDistance;
+			dashTimer = 2.0f;
+		}
+	}
+	private bool CanDash(Vector3 dir, float distance)
+	{
+		LayerMask mask = 8;
+		RaycastHit2D obj = Physics2D.Raycast(transform.position, dir, distance, mask);
+		return obj.collider == null && dashTimer < 0.0f;
+	}
 	private void Shoot(InputAction.CallbackContext obj)
 	{
 		switch(environmentType)
@@ -129,7 +148,7 @@ public class PlayerController : MonoBehaviour
 		HandlePlayer();
         ManagePowerUpTimer();
         shootTimer -= Time.deltaTime;
-
+		dashTimer -= Time.deltaTime;
 	}
 
 	private void HandleEnvironmentAbilities()
@@ -171,10 +190,12 @@ public class PlayerController : MonoBehaviour
 			aimTransform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 		}
 	}
-
+	private Vector3 vel;
+	private float smoothDamp = 0.2f;
 	private void AdjustCamera(Vector2 pos)
 	{
-		camera.transform.parent.position = new Vector3(this.transform.position.x, this.transform.position.y, -5);
+		camera.transform.parent.position = Vector3.SmoothDamp(camera.transform.parent.position, new Vector3(this.transform.position.x, this.transform.position.y, -5), ref vel, smoothDamp);
+		//camera.transform.parent.position = 
 	}
 
 	private Vector2 GetPositionToMove()
