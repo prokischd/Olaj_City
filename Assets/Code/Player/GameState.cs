@@ -81,7 +81,7 @@ public class GameState : MonoBehaviour
 		DEFAULT_ENEMY_MOVEMENT_SPEED = enemyMovementSpeed;
 		DEFAULT_SPAWN_PROJECTILE_FORCE = spawnerProjectileForce;
 		player = GameObject.FindWithTag(Names.PLAYER_TAG);
-		ActiveEnvironment = EnvironmentType.Green;
+		ActiveEnvironment = EnvironmentType.Red;
 	}
 
 	private void Update()

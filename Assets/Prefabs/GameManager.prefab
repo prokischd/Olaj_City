@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   universalDamageModifier: 1
-  AOE: 2.5
+  AOE: 1
   activePowerUp: 0
   powerUpTimer: 15
   playerMovementSpeed: 0.2
@@ -54,6 +54,7 @@ MonoBehaviour:
   blueObjectSpawnTime: 1
   enemyMovementSpeed: 3.12
   spawnerProjectileForce: 100
+  meteorSpeed: 5
   spawnCount: 8
   spawnTimerSeconds: 1
   SpawnRadius: 4

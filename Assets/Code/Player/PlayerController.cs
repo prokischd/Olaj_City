@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
 	//BLUE
 	public GameObject blueObject;
 	private Vector3 lastMoveDir = Vector3.zero;
-	public float dashSpeed = 50.0f;
 	public float dashDistance = 4.0f;
 	public float dashTimer = 2.0f;
     public GameObject meteor;

@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &1452850455
 Animator:
   serializedVersion: 3
@@ -330,6 +330,10 @@ MonoBehaviour:
     type: 3}
   blueObject: {fileID: 5793895737006387149, guid: 3fb5585f9c447174aa34c04bb817efe7,
     type: 3}
+  dashSpeed: 50
+  dashDistance: 4
+  dashTimer: 2
+  meteor: {fileID: 3000934374054239907, guid: b42630ca598bdb142bb89c230966bcdc, type: 3}
 --- !u!114 &7175208208226633560
 MonoBehaviour:
   m_ObjectHideFlags: 0
