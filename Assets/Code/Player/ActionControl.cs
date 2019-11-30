@@ -25,6 +25,22 @@ public class @ActionControl : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e98b1af-0338-4927-83be-67f70ec1dbb6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseAim"",
+                    ""type"": ""Button"",
+                    ""id"": ""696b5f5c-6fee-4bad-ada7-17feac0fcd87"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -93,6 +109,28 @@ public class @ActionControl : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d71e03c-74d9-4d0a-bb9b-6df17b499cf1"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d03d946-fd4f-4408-a924-40d3685b49cd"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -102,6 +140,8 @@ public class @ActionControl : IInputActionCollection, IDisposable
         // GamePlay
         m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
         m_GamePlay_Move = m_GamePlay.FindAction("Move", throwIfNotFound: true);
+        m_GamePlay_Aim = m_GamePlay.FindAction("Aim", throwIfNotFound: true);
+        m_GamePlay_MouseAim = m_GamePlay.FindAction("MouseAim", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -152,11 +192,15 @@ public class @ActionControl : IInputActionCollection, IDisposable
     private readonly InputActionMap m_GamePlay;
     private IGamePlayActions m_GamePlayActionsCallbackInterface;
     private readonly InputAction m_GamePlay_Move;
+    private readonly InputAction m_GamePlay_Aim;
+    private readonly InputAction m_GamePlay_MouseAim;
     public struct GamePlayActions
     {
         private @ActionControl m_Wrapper;
         public GamePlayActions(@ActionControl wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_GamePlay_Move;
+        public InputAction @Aim => m_Wrapper.m_GamePlay_Aim;
+        public InputAction @MouseAim => m_Wrapper.m_GamePlay_MouseAim;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -169,6 +213,12 @@ public class @ActionControl : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMove;
+                @Aim.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnAim;
+                @MouseAim.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMouseAim;
+                @MouseAim.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMouseAim;
+                @MouseAim.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMouseAim;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -176,6 +226,12 @@ public class @ActionControl : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
+                @MouseAim.started += instance.OnMouseAim;
+                @MouseAim.performed += instance.OnMouseAim;
+                @MouseAim.canceled += instance.OnMouseAim;
             }
         }
     }
@@ -183,5 +239,7 @@ public class @ActionControl : IInputActionCollection, IDisposable
     public interface IGamePlayActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
+        void OnMouseAim(InputAction.CallbackContext context);
     }
 }
