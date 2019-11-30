@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
 		{
 			return;
 		}
-		if(collision.gameObject.tag == "Player")
+		if(collision.gameObject.tag == Names.PLAYER_TAG)
 		{
 			collision.gameObject.GetComponent<PlayerController>().Hit(hitDamage);
 			Destroy(this.gameObject);

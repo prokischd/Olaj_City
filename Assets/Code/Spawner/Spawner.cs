@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-	public float spawnerForce = 10;
+	public float spawnerForce = 20;
 	public int spawnCount = 4;
 	public float spawnTimeSeconds = 1;
 	public UnityEngine.Object projectile;
@@ -46,6 +46,6 @@ public class Spawner : MonoBehaviour
 	{
 		Vector3 dir3 = new Vector3(dir.x, dir.y, 0);
 		GameObject go = Instantiate(projectile, position: transform.position + dir3, Quaternion.identity) as GameObject;
-		go.GetComponent<Rigidbody2D>().AddForce(dir3 * spawnerForce);
+		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * spawnerForce);
 	}
 }
