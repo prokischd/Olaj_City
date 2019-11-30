@@ -49,6 +49,14 @@ public class @ActionControl : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""2e3fd2c6-8ce6-4a2e-9710-2c78079fd9bb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -161,6 +169,28 @@ public class @ActionControl : IInputActionCollection, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c07ec09-9ade-4b2a-9f6c-f609e5ceb79d"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b85c083d-c324-43ef-afab-59c37e270829"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -173,6 +203,7 @@ public class @ActionControl : IInputActionCollection, IDisposable
         m_GamePlay_Aim = m_GamePlay.FindAction("Aim", throwIfNotFound: true);
         m_GamePlay_MouseAim = m_GamePlay.FindAction("MouseAim", throwIfNotFound: true);
         m_GamePlay_Shoot = m_GamePlay.FindAction("Shoot", throwIfNotFound: true);
+        m_GamePlay_Dash = m_GamePlay.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -226,6 +257,7 @@ public class @ActionControl : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_Aim;
     private readonly InputAction m_GamePlay_MouseAim;
     private readonly InputAction m_GamePlay_Shoot;
+    private readonly InputAction m_GamePlay_Dash;
     public struct GamePlayActions
     {
         private @ActionControl m_Wrapper;
@@ -234,6 +266,7 @@ public class @ActionControl : IInputActionCollection, IDisposable
         public InputAction @Aim => m_Wrapper.m_GamePlay_Aim;
         public InputAction @MouseAim => m_Wrapper.m_GamePlay_MouseAim;
         public InputAction @Shoot => m_Wrapper.m_GamePlay_Shoot;
+        public InputAction @Dash => m_Wrapper.m_GamePlay_Dash;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -255,6 +288,9 @@ public class @ActionControl : IInputActionCollection, IDisposable
                 @Shoot.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnShoot;
+                @Dash.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -271,6 +307,9 @@ public class @ActionControl : IInputActionCollection, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -281,5 +320,6 @@ public class @ActionControl : IInputActionCollection, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnMouseAim(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }
