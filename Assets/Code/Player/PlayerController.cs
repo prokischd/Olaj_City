@@ -127,7 +127,9 @@ public class PlayerController : MonoBehaviour
     {
 		HandleEnvironmentAbilities();
 		HandlePlayer();
-		shootTimer -= Time.deltaTime;
+        ManagePowerUpTimer();
+        shootTimer -= Time.deltaTime;
+
 	}
 
 	private void HandleEnvironmentAbilities()
