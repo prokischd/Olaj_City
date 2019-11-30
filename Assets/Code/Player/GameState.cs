@@ -32,9 +32,11 @@ public class GameState : MonoBehaviour
     //Enem
     public float enemyMovementSpeed = 1.0f;
 
-    //Spaw
-    public float spawnForce = 20.0f;
-    public int spawnCount = 4;
+	//Player
+	public float playerForce = 20.0f;
+	//Spaw
+	public float spawnForce = 20.0f;
+	public int spawnCount = 4;
     public float spawnTimerSeconds = 0.6f;
 
     //Weat
@@ -74,6 +76,5 @@ public class GameState : MonoBehaviour
 		PowerUp.Action();
 		// sprite
 		// valtozok
-
 	}
 }

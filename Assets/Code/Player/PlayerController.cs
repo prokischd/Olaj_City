@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
 	{
 		Vector3 dir3 = new Vector3(dir.x, dir.y, 0);
 		GameObject go = Instantiate(redObject, position: transform.position + dir3 * gs.SpawnRadius, Quaternion.identity) as GameObject;
-		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * gs.spawnForce);
+		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * gs.playerForce);
 	}
 
 	private void ShootGreen()
