@@ -119,12 +119,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2866729828378044339}
-  - component: {fileID: 2866729828378044338}
   - component: {fileID: 2866729828378044341}
   - component: {fileID: 2866729828378044350}
+  - component: {fileID: 8586859555011708895}
+  - component: {fileID: 903295568}
   m_Layer: 0
   m_Name: PlayerGameObject
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,20 +146,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2866729828378044338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2866729828378044351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77101aefe5e84e45b4739b9a3796760, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MovementSpeed: 5
-  rb: {fileID: 2866729828378044341}
 --- !u!50 &2866729828378044341
 Rigidbody2D:
   serializedVersion: 4
@@ -196,3 +183,33 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &8586859555011708895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2866729828378044351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af214d654dbef344bea3c9429b1d39c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementSpeed: 5
+  camera: {fileID: 0}
+  rb: {fileID: 2866729828378044341}
+--- !u!114 &903295568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2866729828378044351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af214d654dbef344bea3c9429b1d39c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementSpeed: 5
+  camera: {fileID: 0}
+  rb: {fileID: 2866729828378044341}

@@ -6,14 +6,16 @@ public class PlayerController : MonoBehaviour
 {
 	public static float PLAYER_MOVEMENTSPEED = 0.1f;
 	public float MovementSpeed = 5.0f;
-	public Camera camera = Camera.main;
+	public Camera camera;
 	public Rigidbody2D rb;
 
-	private ActionControl playercontrol = new ActionControl();
-	private Vector2 MoveDirection = Vector2.zero;
-
+	private ActionControl playercontrol;
+	private Vector2 MoveDirection;
     void Awake()
-    { 
+    {
+		playercontrol = new ActionControl();
+		camera = Camera.main;
+		MoveDirection = Vector2.zero;
 		playercontrol.GamePlay.Move.performed += Move;
 		playercontrol.GamePlay.Move.canceled += Stop;
 	}
@@ -70,4 +72,9 @@ public class PlayerController : MonoBehaviour
     {
         return false;
     }
+
+	public void Hit(int hitDamage)
+	{
+		
+	}
 }
