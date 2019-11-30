@@ -15,26 +15,26 @@ public class PowerUp : MonoBehaviour
 		var gameState = GameState.GetGameState();
 		gameState.powerUpTimer = 15.0f;
 
-        switch (gameState.activePowerUp)
-        {
-            case PowerUpType.ExtraSpeed:
+		switch(gameState.activePowerUp)
+		{
+			case PowerUpType.ExtraSpeed:
 				break;
 
-            case PowerUpType.LowerSpeed:
-                Debug.Log("lowerspeed");
-                break;
+			case PowerUpType.LowerSpeed:
+				Debug.Log("lowerspeed");
+				break;
 
-            case PowerUpType.BigAOE:
-                Debug.Log("bigaoe");
-                break;
+			case PowerUpType.BigAOE:
+				Debug.Log("bigaoe");
+				break;
 
-            case PowerUpType.ReverseControls:
-                Debug.Log("reversecontrols");
-                break;
+			case PowerUpType.ReverseControls:
+				Debug.Log("reversecontrols");
+				break;
 
-            default:
-                Debug.Log("default");
-                break;
-
+			default:
+				Debug.Log("default");
+				break;
+		}
     }
 }
