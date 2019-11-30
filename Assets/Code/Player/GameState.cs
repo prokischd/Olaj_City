@@ -23,10 +23,10 @@ public class GameState : MonoBehaviour
     public float playerMovementSpeed = 1.0f;
     public float playerHP = 100.0f;
     public bool reverseControls = false;
-    public float playerProjectileForce = 20.0f;
+    public float playerProjectileForce = 300.0f;
 
     //Enemy
-    public float enemyMovementSpeed = 1.0f;
+    public float enemyMovementSpeed = 0.2f;
 
 	//Spawn
 	public float spawnerProjectileForce = 20.0f;
