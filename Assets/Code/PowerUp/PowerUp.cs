@@ -10,14 +10,15 @@ public class PowerUp : MonoBehaviour
         player = GameObject.Find(Names.PLAYER_TAG);
     }
 
-    public void Action()
+    public static void Action()
     {
+		var gameState = GameState.GetGameState();
+		gameState.powerUpTimer = 15.0f;
 
-        switch (GameState.GetGameState().activePowerUp)
+        switch (gameState.activePowerUp)
         {
-            case PowerUpType.ExtraSpeed: 
-                Debug.Log("extraspeed");
-                break;
+            case PowerUpType.ExtraSpeed:
+				break;
 
             case PowerUpType.LowerSpeed:
                 Debug.Log("lowerspeed");
@@ -35,10 +36,5 @@ public class PowerUp : MonoBehaviour
                 Debug.Log("default");
                 break;
 
-        }
-        
-       /* switch (GameState.activeEnvironment)
-        {
-        }*/
     }
 }

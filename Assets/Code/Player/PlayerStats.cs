@@ -22,6 +22,7 @@ public class PlayerStats : MonoBehaviour
 
 	public void LoseHP(float hitDamage)
 	{
-		GameState.GetGameState().playerHP -= hitDamage * GameState.GetGameState().damageModifier;
+		var gs = GameState.GetGameState();
+		gs.playerHP -= hitDamage * gs.damageModifier;
 	}
 }

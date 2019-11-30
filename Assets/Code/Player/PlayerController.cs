@@ -16,7 +16,10 @@ public class PlayerController : MonoBehaviour
 
 	private Vector2 rightStickPos = Vector2.up;
 	private EnvironmentType environmentType;
-	private float timer = GameState.GetGameState().spawnTimerSeconds;
+
+
+	private float shootTimer = GameState.GetGameState().spawnTimerSeconds;
+	private float loseHpTime = 0.0f;
 
 
 	//RED
@@ -49,10 +52,10 @@ public class PlayerController : MonoBehaviour
 		switch(environmentType)
 		{
 			case EnvironmentType.Red:
-				if(timer <= 0.0f)
+				if(shootTimer <= 0.0f)
 				{
 					ShootRed();
-					timer = GameState.GetGameState().spawnTimerSeconds;
+					shootTimer = GameState.GetGameState().spawnTimerSeconds;
 				}			
 				break;
 			case EnvironmentType.Green:
@@ -87,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
 		HandleEnvironmentAbilities();
 		HandlePlayer();
-		timer -= Time.deltaTime;
+		shootTimer -= Time.deltaTime;
 	}
 
 	private void HandleEnvironmentAbilities()
@@ -189,5 +192,25 @@ public class PlayerController : MonoBehaviour
 	private void ShootGreen()
 	{
 		
+	}
+
+	public void LoseHpEverySecond()
+	{
+		loseHpTime += Time.deltaTime;
+
+		if(loseHpTime >= 1)
+		{
+			playerStats.LoseHP(1);
+			loseHpTime = 0f;
+		}
+	}
+
+	public void ManagePowerUpTimer()
+	{
+		GameState.GetGameState().powerUpTimer -= Time.deltaTime;
+		if(GameState.GetGameState().powerUpTimer <= 0)
+		{
+			LoseHpEverySecond();
+		}
 	}
 }

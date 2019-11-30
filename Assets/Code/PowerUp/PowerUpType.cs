@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public enum PowerUpType
+﻿public enum PowerUpType
 {
-    None, ExtraSpeed, LowerSpeed, BigAOE, ReverseControls
+    ExtraSpeed, LowerSpeed, BigAOE, ReverseControls
 }

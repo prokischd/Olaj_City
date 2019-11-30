@@ -23,7 +23,7 @@ public class GameState : MonoBehaviour
 	public float SpawnRadius = 3.0f;
 
     //Play
-    public PowerUpType activePowerUp = PowerUpType.None;
+    public PowerUpType activePowerUp;
     public float powerUpTimer = 15.0f;
     public float playerMovementSpeed = 1.0f;
     public float playerHP = 100.0f;
@@ -68,8 +68,12 @@ public class GameState : MonoBehaviour
 
 	}
 
-	private void SetEnvironment(EnvironmentType activeEnvironmentType)
+	public void SetEnvironment(EnvironmentType activeEnvironmentType)
 	{
 		player.GetComponent<PlayerController>().SetState(activeEnvironmentType);
+		PowerUp.Action();
+		// sprite
+		// valtozok
+
 	}
 }
