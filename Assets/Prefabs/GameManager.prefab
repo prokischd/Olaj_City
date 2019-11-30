@@ -50,12 +50,21 @@ MonoBehaviour:
   playerMovementSpeed: 0.2
   playerHP: 100
   reverseControls: 0
+<<<<<<< HEAD
+  playerProjectileForce: 10
+  enemyMovementSpeed: 0.2
+  spawnerProjectileForce: 1
+  spawnCount: 4
+  spawnTimerSeconds: 0.6
+  SpawnRadius: 3
+=======
   playerProjectileForce: 300
   enemyMovementSpeed: 1
   spawnerProjectileForce: 100
   spawnCount: 8
   spawnTimerSeconds: 1
   SpawnRadius: 4
+>>>>>>> b09844994e48ea44f5ae5af134f4430547b5aab2
   environmentalStrength: 1
   player: {fileID: 0}
   environment: {fileID: 0}

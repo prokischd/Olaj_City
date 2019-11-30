@@ -103,7 +103,14 @@ public class PlayerController : MonoBehaviour
 
 	private void Move(InputAction.CallbackContext obj)
 	{
-		MoveDirection = obj.ReadValue<Vector2>();
+        if (gs.reverseControls)
+        {
+            MoveDirection = -obj.ReadValue<Vector2>();
+        }
+        else
+        {
+            MoveDirection = obj.ReadValue<Vector2>();
+        }
 
 		if(MoveDirection.x == 0)
 		{

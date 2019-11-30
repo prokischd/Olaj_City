@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 64233805}
   - component: {fileID: 64233806}
-  - component: {fileID: 1452850457}
+  - component: {fileID: 1452850455}
   m_Layer: 9
   m_Name: SpriteObject
   m_TagString: Untagged
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1452850457
+--- !u!95 &1452850455
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -326,7 +326,10 @@ MonoBehaviour:
   rb: {fileID: 2866729828378044341}
   redObject: {fileID: 6355744124888099820, guid: 71ed5e32f7742454db3b40eb724dc0cc,
     type: 3}
-  redShoot: 0
+  greenObject: {fileID: 5793895737006387149, guid: 3fb5585f9c447174aa34c04bb817efe7,
+    type: 3}
+  blueObject: {fileID: 5793895737006387149, guid: 3fb5585f9c447174aa34c04bb817efe7,
+    type: 3}
 --- !u!114 &7175208208226633560
 MonoBehaviour:
   m_ObjectHideFlags: 0
