@@ -16,17 +16,17 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - PlayerDash
+  - PLayerProjectile
+  - EnemyProejectile
   - Postprocessing
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
