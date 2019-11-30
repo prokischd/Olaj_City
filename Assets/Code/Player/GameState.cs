@@ -10,13 +10,13 @@ public class GameState : MonoBehaviour
 		return GameObject.Find("GameManager").GetComponent<GameState>();
 	}
     //Default
-    public const float DEFAULT_UNIVERSAL_DAMAGEMODIFIER = 1.0f;
-    public const float DEFAULT_AOE = 2.5f;
-    public const float DEFAULT_PLAYER_MOVEMENTSPEED = 0.25f;
-    public const bool DEFAULT_REVERSE_CONTROLS = false;
-    public const float DEFAULT_PLAYER_PROJECTILE_FORCE = 10.0f;
-    public const float DEFAULT_ENEMY_MOVEMENT_SPEED = 0.2f;
-    public const float DEFAULT_SPAWN_PROJECTILE_FORCE = 1.0f;
+    public static float DEFAULT_UNIVERSAL_DAMAGEMODIFIER = 1.0f;
+    public static float DEFAULT_AOE = 2.5f;
+    public static float DEFAULT_PLAYER_MOVEMENTSPEED = 0.25f;
+    public static bool DEFAULT_REVERSE_CONTROLS = false;
+    public static float DEFAULT_PLAYER_PROJECTILE_FORCE = 10.0f;
+    public static float DEFAULT_ENEMY_MOVEMENT_SPEED = 0.2f;
+    public static float DEFAULT_SPAWN_PROJECTILE_FORCE = 1.0f;
 
 
     //Damage
@@ -70,6 +70,13 @@ public class GameState : MonoBehaviour
 
 	private void Start()
 	{
+		DEFAULT_UNIVERSAL_DAMAGEMODIFIER = universalDamageModifier;
+		DEFAULT_AOE = AOE;
+		DEFAULT_PLAYER_MOVEMENTSPEED = playerMovementSpeed;
+		DEFAULT_REVERSE_CONTROLS = reverseControls;
+		DEFAULT_PLAYER_PROJECTILE_FORCE = playerProjectileForce;
+		DEFAULT_ENEMY_MOVEMENT_SPEED = enemyMovementSpeed;
+		DEFAULT_SPAWN_PROJECTILE_FORCE = spawnerProjectileForce;
 		player = GameObject.FindWithTag(Names.PLAYER_TAG);
 		ActiveEnvironment = EnvironmentType.Green;
 	}

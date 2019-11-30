@@ -10,7 +10,7 @@ public class GreenObject :MonoBehaviour
 	void Start()
 	{
 		gs = GameState.GetGameState();
-		Destroy(this.gameObject, gs.blueObjectDestroyTime);
+		//Destroy(this.gameObject, gs.blueObjectDestroyTime);
 		Invoke("EnableDamage", 2.0f);
 	}
 
@@ -21,7 +21,7 @@ public class GreenObject :MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if(collision.gameObject.tag == Names.PLAYER_TAG)
+		if(collision.gameObject.tag == Names.PLAYER_TAG && enabled)
 		{
 			collision.gameObject.GetComponent<PlayerController>().Hit(gs.greenObjectHitDamage);
 		}

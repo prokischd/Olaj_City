@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 1
+  m_SpriteSortPoint: 0
 --- !u!95 &1452850455
 Animator:
   serializedVersion: 3
@@ -326,7 +326,7 @@ MonoBehaviour:
   rb: {fileID: 2866729828378044341}
   redObject: {fileID: 6355744124888099820, guid: 71ed5e32f7742454db3b40eb724dc0cc,
     type: 3}
-  greenObject: {fileID: 5793895737006387149, guid: 3fb5585f9c447174aa34c04bb817efe7,
+  greenObject: {fileID: 1141361279300424945, guid: f69689c201c0d144d97a017fe6e89d6d,
     type: 3}
   blueObject: {fileID: 5793895737006387149, guid: 3fb5585f9c447174aa34c04bb817efe7,
     type: 3}
