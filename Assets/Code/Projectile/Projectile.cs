@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+		Destroy(this.gameObject, 6);
     }
 
     // Update is called once per frame
@@ -19,6 +19,10 @@ public class Projectile : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
+		if(collision.gameObject.GetComponent<Projectile>() != null)
+		{
+			return;
+		}
 		if(collision.gameObject.tag == "Player")
 		{
 			collision.gameObject.GetComponent<PlayerController>().Hit(hitDamage);
@@ -26,8 +30,6 @@ public class Projectile : MonoBehaviour
 		}
 		else
 		{
-			Vector3 force = transform.position - collision.transform.position;
-			GetComponent<Rigidbody2D>().AddForce(force * bounceMagnitude * Time.deltaTime);
 			HP--;
 			if(HP == 0)
 			{

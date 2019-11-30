@@ -5,17 +5,21 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 	public static float PLAYER_MOVEMENTSPEED = 0.1f;
-	public float MovementSpeed = 5.0f;
+	public float MovementSpeed = 9.0f;
 	public Camera camera;
 	public Rigidbody2D rb;
 
 	private ActionControl playercontrol;
 	private Vector2 MoveDirection;
+	private PlayerStats playerStats;
     void Awake()
     {
 		playercontrol = new ActionControl();
 		camera = Camera.main;
 		MoveDirection = Vector2.zero;
+
+		playerStats = GetComponent<PlayerStats>();
+		playercontrol.GamePlay.Enable();
 		playercontrol.GamePlay.Move.performed += Move;
 		playercontrol.GamePlay.Move.canceled += Stop;
 	}
@@ -36,19 +40,9 @@ public class PlayerController : MonoBehaviour
 		MoveDirection = Vector2.zero;
 	}
 
-	void OnEnable()
-	{
-		playercontrol.GamePlay.Enable();
-	}
-
-	void OnDisable()
-	{
-		playercontrol.GamePlay.Disable();
-	}
-
 	void Update()
     {
-		Vector2 pos = Move();
+		Vector2 pos = GetPositionToMove();
 		rb.MovePosition(pos);
 		AdjustCamera(pos);
 	}
@@ -58,7 +52,7 @@ public class PlayerController : MonoBehaviour
 		camera.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -5);
 	}
 
-	private Vector2 Move()
+	private Vector2 GetPositionToMove()
 	{
 		return (Get2DPosition() + MoveDirection * PLAYER_MOVEMENTSPEED);
 	}
@@ -75,6 +69,6 @@ public class PlayerController : MonoBehaviour
 
 	public void Hit(int hitDamage)
 	{
-		
+		playerStats.LoseHP(hitDamage);
 	}
 }
