@@ -41,7 +41,8 @@ public class Spawner : MonoBehaviour
 	private void Spawn(Vector2 dir)
 	{
 		Vector3 dir3 = new Vector3(dir.x, dir.y, 0);
-		GameObject go = Instantiate(projectile, position: (transform.position + dir3) * gs.SpawnRadius, Quaternion.identity) as GameObject;
+		var pos = (transform.position + dir3 * gs.SpawnRadius);
+		GameObject go = Instantiate(projectile, position: pos, Quaternion.identity) as GameObject;
 		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * gs.spawnerProjectileForce);
 	}
 }

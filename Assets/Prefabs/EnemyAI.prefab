@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7123554830252315145}
   - component: {fileID: 1896125953857864677}
   - component: {fileID: 8423272085787482266}
-  - component: {fileID: 907918212253662040}
+  - component: {fileID: 303541930}
+  - component: {fileID: 1922900745}
   m_Layer: 0
   m_Name: EnemyAI
   m_TagString: Untagged
@@ -45,7 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1231f5ea10988854c9e09d29f263534d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 40
   moveDelta: 0.1
+  movementSpeed: 3
 --- !u!212 &8423272085787482266
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -95,8 +98,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &907918212253662040
-BoxCollider2D:
+--- !u!58 &303541930
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,15 +112,19 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
-    newSize: {x: 5.12, y: 5.12}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 1
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.06, y: 1.6}
-  m_EdgeRadius: 0
+  m_Radius: 13.81
+--- !u!114 &1922900745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8568931550872678290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe3ef48fe3184744b34fe3cecda86e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 6355744124888099820, guid: 71ed5e32f7742454db3b40eb724dc0cc,
+    type: 3}

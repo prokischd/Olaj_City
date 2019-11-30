@@ -52,7 +52,7 @@ MonoBehaviour:
   reverseControls: 0
   playerProjectileForce: 300
   blueObjectSpawnTime: 1
-  enemyMovementSpeed: 0.2
+  enemyMovementSpeed: 3.12
   spawnerProjectileForce: 100
   spawnCount: 8
   spawnTimerSeconds: 1
