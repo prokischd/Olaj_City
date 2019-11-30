@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-	public static float PLAYER_MOVEMENTSPEED = 0.1f;
-	public float MovementSpeed = 9.0f;
 	public Camera camera;
 	public Rigidbody2D rb;
 
@@ -54,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
 	private Vector2 GetPositionToMove()
 	{
-		return (Get2DPosition() + MoveDirection * PLAYER_MOVEMENTSPEED);
+		return (Get2DPosition() + MoveDirection * GameState.playerMovementSpeed);
 	}
 	private Vector2 Get2DPosition()
 	{

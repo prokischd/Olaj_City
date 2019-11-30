@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-	public int HP = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -15,14 +14,14 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(HP <= 0)
+        if(GameState.playerHP <= 0)
 		{
 			Debug.Log("You lost!");
 		}
     }
 
-	public void LoseHP(int hitDamage)
+	public void LoseHP(float hitDamage)
 	{
-		HP -= hitDamage;
+		GameState.playerHP -= hitDamage * GameState.damageModifier;
 	}
 }

@@ -5,11 +5,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-	public float spawnerForce = 20;
-	public int spawnCount = 4;
-	public float spawnTimeSeconds = 1;
 	public UnityEngine.Object projectile;
-
 	private float timer = 0.0f;
 
 	void Start()
@@ -21,7 +17,7 @@ public class Spawner : MonoBehaviour
     void Update()
     {
 		timer += Time.deltaTime;
-        if(timer > spawnTimeSeconds)
+        if(timer > GameState.spawnTimerSeconds)
 		{
 			SpawnProjectiles();
 			timer = 0.0f;
@@ -30,9 +26,9 @@ public class Spawner : MonoBehaviour
 
 	private void SpawnProjectiles()
 	{
-		for(int i = 0; i < spawnCount; i++)
+		for(int i = 0; i < GameState.spawnCount; i++)
 		{
-			float step = i / (float)spawnCount;
+			float step = i / (float)GameState.spawnCount;
 			float angle = step * 360;
 			float angleRad = angle * (float)Math.PI / 180.0f;
 			float x = Mathf.Sin(angleRad);
@@ -46,6 +42,6 @@ public class Spawner : MonoBehaviour
 	{
 		Vector3 dir3 = new Vector3(dir.x, dir.y, 0);
 		GameObject go = Instantiate(projectile, position: transform.position + dir3, Quaternion.identity) as GameObject;
-		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * spawnerForce);
+		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * GameState.spawnForce);
 	}
 }
