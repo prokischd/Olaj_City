@@ -20,7 +20,7 @@ public class UnwantedItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" )
         {
             System.Random rng = new System.Random();
 			GameState gs = GameObject.Find("GameManager").GetComponent<GameState>();
