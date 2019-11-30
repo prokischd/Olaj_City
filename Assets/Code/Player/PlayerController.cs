@@ -18,9 +18,9 @@ public class PlayerController : MonoBehaviour
 	private EnvironmentType environmentType;
 
 
-	private float shootTimer = GameState.GetGameState().spawnTimerSeconds;
+	private float shootTimer;
 	private float loseHpTime = 0.0f;
-
+	GameState gs;
 
 	//RED
 	public GameObject redObject;
@@ -28,8 +28,10 @@ public class PlayerController : MonoBehaviour
 	//GREE
 	//BLUE
 
-	void Awake()
+	void Start()
     {
+		gs = GameState.GetGameState();
+		shootTimer = GameState.GetGameState().spawnTimerSeconds;
 		playercontrol = new ActionControl();
 		camera = Camera.main;
 		aimTransform = transform.Find("AimObject");
@@ -55,7 +57,7 @@ public class PlayerController : MonoBehaviour
 				if(shootTimer <= 0.0f)
 				{
 					ShootRed();
-					shootTimer = GameState.GetGameState().spawnTimerSeconds;
+					shootTimer = gs.spawnTimerSeconds;
 				}			
 				break;
 			case EnvironmentType.Green:
@@ -135,12 +137,12 @@ public class PlayerController : MonoBehaviour
 
 	private void AdjustCamera(Vector2 pos)
 	{
-		camera.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -5);
+		camera.transform.parent.position = new Vector3(this.transform.position.x, this.transform.position.y, -5);
 	}
 
 	private Vector2 GetPositionToMove()
 	{
-		return (Get2DPosition() + MoveDirection * GameState.GetGameState().playerMovementSpeed);
+		return (Get2DPosition() + MoveDirection * gs.playerMovementSpeed);
 	}
 	private Vector2 Get2DPosition()
 	{
@@ -170,9 +172,9 @@ public class PlayerController : MonoBehaviour
 
 	private void SpawnProjectiles()
 	{
-		for(int i = 0; i < GameState.GetGameState().spawnCount; i++)
+		for(int i = 0; i < gs.spawnCount; i++)
 		{
-			float step = i / (float)GameState.GetGameState().spawnCount;
+			float step = i / (float)gs.spawnCount;
 			float angle = step * 360;
 			float angleRad = angle * (float)Math.PI / 180.0f;
 			float x = Mathf.Sin(angleRad);
@@ -185,8 +187,8 @@ public class PlayerController : MonoBehaviour
 	private void Spawn(Vector2 dir)
 	{
 		Vector3 dir3 = new Vector3(dir.x, dir.y, 0);
-		GameObject go = Instantiate(redObject, position: transform.position + dir3 * GameState.GetGameState().SpawnRadius, Quaternion.identity) as GameObject;
-		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * GameState.GetGameState().spawnForce);
+		GameObject go = Instantiate(redObject, position: transform.position + dir3 * gs.SpawnRadius, Quaternion.identity) as GameObject;
+		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * gs.spawnForce);
 	}
 
 	private void ShootGreen()
@@ -207,8 +209,8 @@ public class PlayerController : MonoBehaviour
 
 	public void ManagePowerUpTimer()
 	{
-		GameState.GetGameState().powerUpTimer -= Time.deltaTime;
-		if(GameState.GetGameState().powerUpTimer <= 0)
+		gs.powerUpTimer -= Time.deltaTime;
+		if(gs.powerUpTimer <= 0)
 		{
 			LoseHpEverySecond();
 		}

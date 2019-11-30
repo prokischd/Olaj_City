@@ -7,17 +7,17 @@ public class Spawner : MonoBehaviour
 {
 	public UnityEngine.Object projectile;
 	private float timer = 0.0f;
-
+	GameState gs;
 	void Start()
     {
-        
-    }
+		gs = GameState.GetGameState();
+	}
 
 
     void Update()
     {
 		timer += Time.deltaTime;
-        if(timer > GameState.GetGameState().spawnTimerSeconds)
+        if(timer > gs.spawnTimerSeconds)
 		{
 			SpawnProjectiles();
 			timer = 0.0f;
@@ -26,9 +26,9 @@ public class Spawner : MonoBehaviour
 
 	private void SpawnProjectiles()
 	{
-		for(int i = 0; i < GameState.GetGameState().spawnCount; i++)
+		for(int i = 0; i < gs.spawnCount; i++)
 		{
-			float step = i / (float)GameState.GetGameState().spawnCount;
+			float step = i / (float)gs.spawnCount;
 			float angle = step * 360;
 			float angleRad = angle * (float)Math.PI / 180.0f;
 			float x = Mathf.Sin(angleRad);
@@ -42,6 +42,6 @@ public class Spawner : MonoBehaviour
 	{
 		Vector3 dir3 = new Vector3(dir.x, dir.y, 0);
 		GameObject go = Instantiate(projectile, position: transform.position + dir3, Quaternion.identity) as GameObject;
-		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * GameState.GetGameState().spawnForce);
+		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * gs.spawnForce);
 	}
 }
