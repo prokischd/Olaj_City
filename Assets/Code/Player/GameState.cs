@@ -9,34 +9,33 @@ public class GameState : MonoBehaviour
 	{
 		return GameObject.Find("GameManager").GetComponent<GameState>();
 	}
+
     //Damage
-    public float damageModifier = 1.0f;
+    public float universalDamageModifier = 1.0f;
 
     //Projectiles
     public float AOE = 2.5f;
-    public float projectileSpeed = 3.0f;
-    public bool bouncingBullets = false;
-    public bool friendlyFire = false;
-	public float SpawnRadius = 3.0f;
+
 
     //Player
     public PowerUpType activePowerUp;
     public float powerUpTimer = 15.0f;
     public float playerMovementSpeed = 1.0f;
     public float playerHP = 100.0f;
-    public bool controls = true;
-    public float playerForce = 20.0f;
+    public bool reverseControls = false;
+    public float playerProjectileForce = 20.0f;
 
     //Enemy
     public float enemyMovementSpeed = 1.0f;
 
 	//Spawn
-	public float spawnForce = 20.0f;
+	public float spawnerProjectileForce = 20.0f;
 	public int spawnCount = 4;
     public float spawnTimerSeconds = 0.6f;
+	public float SpawnRadius = 3.0f;
 
-    //Environment
-    public float strength = 1.0f;
+	//Environment
+	public float environmentalStrength = 1.0f;
 
 	private EnvironmentType activeEnvironmentType;
 	public EnvironmentType ActiveEnvironment

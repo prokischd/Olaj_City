@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 	private Vector2 rightStickPos = Vector2.up;
 	private EnvironmentType environmentType;
 
-
+	private SpriteRenderer sprite;
 	private float shootTimer;
 	private float loseHpTime = 0.0f;
 	GameState gs;
@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
 	void Start()
     {
+		sprite = transform.Find("SpriteObject").GetComponent<SpriteRenderer>();
 		gs = GameState.GetGameState();
 		shootTimer = GameState.GetGameState().spawnTimerSeconds;
 		playercontrol = new ActionControl();
@@ -82,6 +83,12 @@ public class PlayerController : MonoBehaviour
 	private void Move(InputAction.CallbackContext obj)
 	{
 		MoveDirection = obj.ReadValue<Vector2>();
+
+		if(MoveDirection.x == 0)
+		{
+			return;
+		}
+		sprite.flipX = MoveDirection.x < 0;
 	}
 	private void Stop(InputAction.CallbackContext obj)
 	{
@@ -182,7 +189,7 @@ public class PlayerController : MonoBehaviour
 	{
 		Vector3 dir3 = new Vector3(dir.x, dir.y, 0);
 		GameObject go = Instantiate(redObject, position: transform.position + dir3 * gs.SpawnRadius, Quaternion.identity) as GameObject;
-		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * gs.playerForce);
+		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * gs.playerProjectileForce);
 	}
 
 	private void ShootGreen()

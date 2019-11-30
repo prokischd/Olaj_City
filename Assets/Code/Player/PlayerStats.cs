@@ -23,6 +23,6 @@ public class PlayerStats : MonoBehaviour
 
 	public void LoseHP(float hitDamage)
 	{
-		gs.playerHP -= hitDamage * gs.damageModifier;
+		gs.playerHP -= hitDamage * gs.universalDamageModifier;
 	}
 }
