@@ -149,12 +149,6 @@ public class PlayerController : MonoBehaviour
 		return new Vector2(transform.position.x, transform.position.y);
 	}
 
-    //TODO
-    public bool IsPowerUpActive()
-    {
-        return false;
-    }
-
 	public void Hit(int hitDamage)
 	{
 		playerStats.LoseHP(hitDamage);
