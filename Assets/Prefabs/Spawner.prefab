@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe3ef48fe3184744b34fe3cecda86e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnerForce: 100
+  spawnCount: 4
+  spawnTimeSeconds: 1
   projectile: {fileID: 6355744124888099820, guid: 71ed5e32f7742454db3b40eb724dc0cc,
     type: 3}
-  spawnTimeSeconds: 1
-  spawnCount: 4

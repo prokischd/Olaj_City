@@ -5,22 +5,24 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 	public static float PLAYER_MOVEMENTSPEED = 0.1f;
-	private ActionControl playercontrol;
-	private Vector2 MoveDirection;
-
 	public float MovementSpeed = 5.0f;
+	public Camera camera = Camera.main;
 	public Rigidbody2D rb;
-	public Camera camera;
 
-    // Start is called before the first frame update
+	private ActionControl playercontrol = new ActionControl();
+	private Vector2 MoveDirection = Vector2.zero;
+
     void Awake()
-    {
-		playercontrol = new ActionControl();
-		MoveDirection = Vector2.zero;
-		camera = Camera.main;
-
+    { 
 		playercontrol.GamePlay.Move.performed += Move;
-		playercontrol.GamePlay.Move.canceled += ctx => MoveDirection = Vector2.zero;
+		playercontrol.GamePlay.Move.canceled += Stop;
+	}
+
+	private void OnDestroy()
+	{
+		playercontrol.GamePlay.Move.performed -= Move;
+		playercontrol.GamePlay.Move.canceled -= Stop;
+		playercontrol = null;
 	}
 
 	private void Move(InputAction.CallbackContext obj)
@@ -46,10 +48,10 @@ public class PlayerController : MonoBehaviour
     {
 		Vector2 pos = Move();
 		rb.MovePosition(pos);
-		AdjustCamera();
+		AdjustCamera(pos);
 	}
 
-	private void AdjustCamera()
+	private void AdjustCamera(Vector2 pos)
 	{
 		camera.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -5);
 	}
