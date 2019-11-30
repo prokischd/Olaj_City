@@ -47,3 +47,6 @@ TagManager:
   - name: PlayArea
     uniqueID: 1247592873
     locked: 0
+  - name: Sky
+    uniqueID: 2768027355
+    locked: 0
