@@ -9,19 +9,33 @@ public class PlayerController : MonoBehaviour
 	public Camera camera;
 	public Rigidbody2D rb;
 
+	private bool controllerInput = false;
+	
+	private Transform aimTransform;
 	private ActionControl playercontrol;
 	private Vector2 MoveDirection;
 	private PlayerStats playerStats;
-    void Awake()
+
+	private Vector2 rightStickPos = Vector2.up;
+	void Awake()
     {
 		playercontrol = new ActionControl();
 		camera = Camera.main;
+		aimTransform = transform.Find("AimObject");
 		MoveDirection = Vector2.zero;
 
 		playerStats = GetComponent<PlayerStats>();
 		playercontrol.GamePlay.Enable();
 		playercontrol.GamePlay.Move.performed += Move;
 		playercontrol.GamePlay.Move.canceled += Stop;
+		playercontrol.GamePlay.Aim.performed += ControllerRightStick;
+		playercontrol.GamePlay.MouseAim.performed += ctx => controllerInput = false;
+	}
+
+	private void ControllerRightStick(InputAction.CallbackContext obj)
+	{
+		controllerInput = true;
+		rightStickPos = obj.ReadValue<Vector2>();
 	}
 
 	private void OnDestroy()
@@ -45,6 +59,23 @@ public class PlayerController : MonoBehaviour
 		Vector2 pos = GetPositionToMove();
 		rb.MovePosition(pos);
 		AdjustCamera(pos);
+		RotateLine();
+	}
+
+	private void RotateLine()
+	{
+		if(controllerInput)
+		{
+			var angle = Mathf.Atan2(rightStickPos.y, rightStickPos.x) * Mathf.Rad2Deg - 90;
+			aimTransform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		}
+		else
+		{
+			var pos = camera.WorldToScreenPoint(aimTransform.position);
+			var dir = Input.mousePosition - pos;
+			var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
+			aimTransform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		}
 	}
 
 	private void AdjustCamera(Vector2 pos)
