@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
 	private SpriteRenderer sprite;
 	private float shootTimer;
 	private float loseHpTime = 0.0f;
+    private float meteorSpawnTimer = 4.5f;
+    private float meteorTimer = 0.0f;
+    private float meteorSpawnRadius = 10.0f;
 	GameState gs;
 
 	//RED
@@ -29,7 +32,9 @@ public class PlayerController : MonoBehaviour
 	//BLUE
 	public GameObject blueObject;
 
-	void Start()
+    public GameObject meteor;
+
+    void Start()
     {
 		sprite = transform.Find("SpriteObject").GetComponent<SpriteRenderer>();
 		gs = GameState.GetGameState();
@@ -137,13 +142,20 @@ public class PlayerController : MonoBehaviour
 		switch(environmentType)
 		{
 			case EnvironmentType.Red:
+                meteorTimer += Time.deltaTime;
+                if(meteorTimer >= meteorSpawnTimer)
+                {
+                    meteorTimer = 0.0f;
+                    Vector3  pos = (Vector2)transform.position + UnityEngine.Random.insideUnitCircle * meteorSpawnRadius;
+                    Instantiate(meteor, pos, Quaternion.identity);
+                }
 				break;
 			case EnvironmentType.Green:
 				
 				break;
 			case EnvironmentType.Blue:
-				ShootBlue();
-				break;
+                ShootBlue();
+                break;
 		}
 	}
 

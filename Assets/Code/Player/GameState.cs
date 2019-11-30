@@ -17,7 +17,7 @@ public class GameState : MonoBehaviour
     public static float DEFAULT_PLAYER_PROJECTILE_FORCE = 10.0f;
     public static float DEFAULT_ENEMY_MOVEMENT_SPEED = 0.2f;
     public static float DEFAULT_SPAWN_PROJECTILE_FORCE = 1.0f;
-    public static float DEFAULT_METEOR_SPEED = 1.0f;
+    public static float DEFAULT_METEOR_SPEED = 5.0f;
 
 
     //Damage
