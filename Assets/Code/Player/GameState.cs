@@ -64,9 +64,10 @@ public class GameState : MonoBehaviour
 	}
 	public GameObject player;
 	public GameObject environment;
-	internal int blueObjectHitDamage = 10;
-	internal int greenObjectHitDamage = 20;
-	internal float blueObjectDestroyTime = 11.0f;
+	public int blueObjectHitDamage = 10;
+	public int greenObjectHitDamage = 20;
+	public float blueObjectDestroyTime = 11.0f;
+	public float playerGreenProjectileForce = 500;
 
 	private void Start()
 	{

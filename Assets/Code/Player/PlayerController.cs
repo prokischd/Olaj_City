@@ -228,8 +228,13 @@ public class PlayerController : MonoBehaviour
 
 	private void ShootGreen()
 	{
-		GameObject go = Instantiate(greenObject, position: this.transform.position + aimTransform.forward * gs.SpawnRadius, Quaternion.identity) as GameObject;
-		go.GetComponent<Rigidbody2D>().AddForce(aimTransform.forward * gs.playerProjectileForce);
+		float angle = - 1* aimTransform.rotation.eulerAngles.z;
+		float angleRad = angle * (float)Math.PI / 180.0f;
+		float x = Mathf.Sin(angleRad);
+		float y = Mathf.Cos(angleRad);
+		Vector3 dir = new Vector3(x, y, 0);
+		GameObject go = Instantiate(greenObject, position: this.transform.position + dir * gs.SpawnRadius, Quaternion.identity) as GameObject;
+		go.GetComponent<Rigidbody2D>().AddForce(dir * gs.playerGreenProjectileForce);
 	}
 
 	public void LoseHpEverySecond()
