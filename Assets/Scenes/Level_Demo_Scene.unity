@@ -1429,6 +1429,70 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1931589699}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &451038126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 6005109874838816998, guid: 037ac399ad9f64c4eb514a0e2ad3c370,
+    type: 3}
+  m_PrefabInstance: {fileID: 1275841633}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 451038128}
+  - component: {fileID: 451038127}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &451038127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 6005109874838816997, guid: 037ac399ad9f64c4eb514a0e2ad3c370,
+    type: 3}
+  m_PrefabInstance: {fileID: 1275841633}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451038126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b49e59ebc713b54db55f23b4da9dc2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  universalDamageModifier: 1
+  AOE: 2.5
+  activePowerUp: 0
+  powerUpTimer: 15
+  playerMovementSpeed: 0.2
+  playerHP: 100
+  reverseControls: 0
+  playerProjectileForce: 300
+  blueObjectSpawnTime: 1
+  enemyMovementSpeed: 1
+  spawnerProjectileForce: 100
+  spawnCount: 8
+  spawnTimerSeconds: 1
+  SpawnRadius: 4
+  environmentalStrength: 1
+  activeEnvironmentType: 0
+  player: {fileID: 0}
+  environment: {fileID: 0}
+--- !u!4 &451038128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 6005109874838816996, guid: 037ac399ad9f64c4eb514a0e2ad3c370,
+    type: 3}
+  m_PrefabInstance: {fileID: 1275841633}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451038126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.9280052, y: 4.2009015, z: -2.2797537}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &466991562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7057,6 +7121,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6052334737088004603, guid: 2984f6e8764bf4ff7b4a7212a3a08115,
         type: 3}
+    - target: {fileID: 64233806, guid: 88836c9338262674180b3b0c1385bc16, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1323673645, guid: 88836c9338262674180b3b0c1385bc16, type: 3}
       propertyPath: m_SortingLayerID
       value: 1247592873
@@ -7171,7 +7239,7 @@ MonoBehaviour:
       bevelSize: 0
       spriteIndex: 0
       corner: 0
-  m_SpriteShape: {fileID: 11400000, guid: 3c1208aa45bbe4bc8bebd5de8af45c2b, type: 2}
+  m_SpriteShape: {fileID: 0}
   m_FillPixelPerUnit: 40
   m_StretchTiling: 1
   m_SplineDetail: 16
@@ -7224,7 +7292,7 @@ SpriteShapeRenderer:
   m_SortingOrder: 100
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_MaskInteraction: 0
-  m_ShapeTexture: {fileID: 2800000, guid: c2bb16bb9a27345e2a8cce1b037d72a9, type: 3}
+  m_ShapeTexture: {fileID: 0}
   m_Sprites: []
   m_LocalAABB:
     m_Center: {x: 15.017899, y: -50.188175, z: 0}
