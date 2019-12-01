@@ -4,12 +4,15 @@ public class Projectile : MonoBehaviour
 {
 	public float bounceMagnitude = 30;
 	public int HP = 3;
-	public int hitDamage = 5;
+	public int hitDamage = 10;
 	public bool spawnedByPlayer = false;
 	public GameObject particlePrefab;
+	public GameState gs;
 
     void Start()
     {
+		gs = GameState.GetGameState();
+		hitDamage *= (int)gs.universalDamageModifier;
 		Destroy(this.gameObject, 8);
     }
 
@@ -30,7 +33,7 @@ public class Projectile : MonoBehaviour
 			Instantiate(particlePrefab, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
 		}
-		else if(collision.gameObject.tag == Names.ENEMY_TAG)
+		else if(collision.gameObject.tag == Names.ENEMY_TAG && spawnedByPlayer)
 		{
 			collision.gameObject.GetComponent<EnemyAI>().Hit(hitDamage);
 			Instantiate(particlePrefab, transform.position, Quaternion.identity);
@@ -52,7 +55,7 @@ public class Projectile : MonoBehaviour
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if(collision.gameObject.tag == Names.ENEMY_BODY_TAG)
+		if(collision.gameObject.tag == Names.ENEMY_BODY_TAG && spawnedByPlayer)
 		{
 			collision.gameObject.transform.parent.GetComponent<EnemyAI>().Hit(hitDamage);
 			Instantiate(particlePrefab, transform.position, Quaternion.identity);

@@ -55,10 +55,10 @@ MonoBehaviour:
   spawnerProjectileForce: 100
   meteorSpeed: 5
   spawnCount: 8
-  spawnTimerSeconds: 3
-  greenSpawnTimerSeconds: 0.3
+  bossSpawnCount: 10
+  spawnTimerSeconds: 0.5
+  greenSpawnTimerSeconds: 0.5
   SpawnRadius: 4
-  environmentalStrength: 1
   blueObjectHitDamage: 10
   greenObjectHitDamage: 20
   blueObjectDestroyTime: 10
