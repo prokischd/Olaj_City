@@ -15,6 +15,7 @@ TagManager:
   - GreenBar
   - EnemyBody
   - Tower
+  - Boss
   layers:
   - Default
   - TransparentFX
