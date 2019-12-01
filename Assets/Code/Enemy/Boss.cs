@@ -50,6 +50,10 @@ public class Boss : MonoBehaviour
 			StartCoroutine("BossFlow");
 			timer = 0.0f;
 		}
+		if(HP <= 0)
+		{
+
+		}
 		timer += Time.deltaTime;
 	}
 

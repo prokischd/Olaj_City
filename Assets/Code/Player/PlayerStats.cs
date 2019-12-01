@@ -55,7 +55,14 @@ public class PlayerStats : MonoBehaviour
 
 	internal void GiveHP(int HP)
 	{
-		playerHP += HP;
+		if(playerHP + HP > maxHP)
+		{
+			playerHP = maxHP;
+		}
+		else
+		{
+			playerHP += HP;
+		}
 		UpdateUI();
 	}
 }
