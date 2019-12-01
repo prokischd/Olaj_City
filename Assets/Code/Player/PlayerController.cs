@@ -266,9 +266,9 @@ public class PlayerController : MonoBehaviour
 		playerStats.LoseHP(hitDamage);
 	}
 
-	public void Heal(int HP)
+	public void Heal()
 	{
-		playerStats.GiveHP(HP);
+		playerStats.GiveHP(3);
 	}
 
 
@@ -382,6 +382,8 @@ public class PlayerController : MonoBehaviour
 
 	internal void Die()
 	{
+		var go = GameObject.Find("Win_Loose_Scree");
+		go.transform.Find("Loose").gameObject.SetActive(true);
 		//playercontrol.GamePlay.Disable();
 	}
 }

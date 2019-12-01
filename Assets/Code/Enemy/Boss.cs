@@ -52,6 +52,8 @@ public class Boss : MonoBehaviour
 		}
 		if(HP <= 0)
 		{
+			var go = GameObject.Find("Win_Loose_Scree");
+			go.transform.Find("WIN_Screen").gameObject.SetActive(true);
 			Destroy(this.gameObject);
 		}
 		timer += Time.deltaTime;

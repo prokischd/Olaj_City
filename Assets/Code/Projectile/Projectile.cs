@@ -68,7 +68,7 @@ public class Projectile : MonoBehaviour
 			Destroy(this.gameObject);
 			if(isGreen)
 			{
-				pc.Heal(10);
+				pc.Heal();
 			}
 		}
 		else if(collision.gameObject.tag == Names.TOWER_TAG && spawnedByPlayer)
@@ -76,7 +76,7 @@ public class Projectile : MonoBehaviour
 			collision.gameObject.GetComponent<WatchTower>().Hit(hitDamage);
 			if(isGreen)
 			{
-				pc.Heal(10);
+				pc.Heal();
 			}
 		}
 		else if(collision.gameObject.tag == Names.BOSS_TAG && spawnedByPlayer)
@@ -84,7 +84,7 @@ public class Projectile : MonoBehaviour
 			collision.gameObject.transform.parent.GetComponent<Boss>().Hit(hitDamage);
 			if(isGreen)
 			{
-				pc.Heal(10);
+				pc.Heal();
 			}
 		}
 	}

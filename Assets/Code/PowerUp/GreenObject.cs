@@ -30,7 +30,7 @@ public class GreenObject :MonoBehaviour
 		else if(collision.gameObject.tag == Names.ENEMY_BODY_TAG)
 		{
 			collision.gameObject.transform.parent.GetComponent<EnemyAI>().Hit(gs.blueObjectHitDamage);
-			pc.Heal(10);
+			pc.Heal();
 			Destroy(this.gameObject);
 		}
 	}

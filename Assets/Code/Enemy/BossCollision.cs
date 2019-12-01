@@ -17,7 +17,7 @@ public class BossCollision : MonoBehaviour
 		if(collision.gameObject.GetComponent<GreenObject>() is GreenObject g)
 		{
 			boss.Hit(10);
-			g.pc.Heal(10);
+			g.pc.Heal();
 		}
 	}
 }

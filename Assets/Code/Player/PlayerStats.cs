@@ -5,8 +5,8 @@ public class PlayerStats : MonoBehaviour
 {
 	GameState gs;
 	PlayerController pc;
-	public float maxHP = 200.0f;
-	public float playerHP = 200.0f;
+	public float maxHP = 140.0f;
+	public float playerHP = 140.0f;
 	public GameObject UIObject;
 	// Start is called before the first frame update
 	void Start()
