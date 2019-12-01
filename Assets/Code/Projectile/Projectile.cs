@@ -8,9 +8,11 @@ public class Projectile : MonoBehaviour
 	public bool spawnedByPlayer = false;
 	public GameObject particlePrefab;
 	public GameState gs;
-
+	public bool isGreen = false;
+	public PlayerController pc;
     void Start()
     {
+		pc = GameObject.FindGameObjectWithTag(Names.PLAYER_TAG).GetComponent<PlayerController>();
 		gs = GameState.GetGameState();
 		hitDamage *= (int)gs.universalDamageModifier;
 		Destroy(this.gameObject, 8);
@@ -60,14 +62,26 @@ public class Projectile : MonoBehaviour
 			collision.gameObject.transform.parent.GetComponent<EnemyAI>().Hit(hitDamage);
 			Instantiate(particlePrefab, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
+			if(isGreen)
+			{
+				pc.Heal(10);
+			}
 		}
 		else if(collision.gameObject.tag == Names.TOWER_TAG && spawnedByPlayer)
 		{
 			collision.gameObject.GetComponent<WatchTower>().Hit(hitDamage);
+			if(isGreen)
+			{
+				pc.Heal(10);
+			}
 		}
 		else if(collision.gameObject.tag == Names.BOSS_TAG && spawnedByPlayer)
 		{
 			collision.gameObject.transform.parent.GetComponent<Boss>().Hit(hitDamage);
+			if(isGreen)
+			{
+				pc.Heal(10);
+			}
 		}
 	}
 }

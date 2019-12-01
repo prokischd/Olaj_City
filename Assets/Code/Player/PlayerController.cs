@@ -182,6 +182,7 @@ public class PlayerController : MonoBehaviour
 		if(go.GetComponent<Projectile>() is Projectile p)
 		{
 			p.spawnedByPlayer = true;
+			p.isGreen = gs.ActiveEnvironment == EnvironmentType.Green;
 		}
 	}
 

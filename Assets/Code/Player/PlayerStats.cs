@@ -45,6 +45,10 @@ public class PlayerStats : MonoBehaviour
 
 	public void LoseHP(float hitDamage)
 	{
+		if(playerHP <= 0)
+		{
+			return;
+		}
 		playerHP -= hitDamage * gs.universalDamageModifier;
 		UpdateUI();
 	}
