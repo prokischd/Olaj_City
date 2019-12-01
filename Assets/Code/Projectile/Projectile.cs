@@ -4,12 +4,15 @@ public class Projectile : MonoBehaviour
 {
 	public float bounceMagnitude = 30;
 	public int HP = 3;
-	public int hitDamage = 5;
+	public int hitDamage = 10;
 	public bool spawnedByPlayer = false;
 	public GameObject particlePrefab;
+	public GameState gs;
 
     void Start()
     {
+		gs = GameState.GetGameState();
+		hitDamage *= (int)gs.universalDamageModifier;
 		Destroy(this.gameObject, 8);
     }
 
