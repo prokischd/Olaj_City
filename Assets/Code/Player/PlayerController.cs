@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 				if(shootTimer <= 0.0f)
 				{
 					ShootRed();
-					shootTimer = gs.spawnTimerSeconds;
+					shootTimer = gs.playerSpawnSeconds;
 				}			
 				break;
 			case EnvironmentType.Blue:
@@ -273,7 +273,7 @@ public class PlayerController : MonoBehaviour
             aimTransform = transform.Find("AimObject");
         }
 		aimTransform.gameObject.SetActive(environmentType == EnvironmentType.Green);
-		PowerUp.ReverseControls(environmentType == EnvironmentType.Green);
+		//PowerUp.ReverseControls(environmentType == EnvironmentType.Green);
 	}
 
 	private void ShootRed()
