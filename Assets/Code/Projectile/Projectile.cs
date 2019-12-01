@@ -57,6 +57,10 @@ public class Projectile : MonoBehaviour
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		if(spawnedByPlayer)
+		{
+
+		}
 		if(collision.gameObject.tag == Names.ENEMY_BODY_TAG && spawnedByPlayer)
 		{
 			collision.gameObject.transform.parent.GetComponent<EnemyAI>().Hit(hitDamage);
