@@ -47,13 +47,18 @@ public class EnemyAI : MonoBehaviour
 	{
 		if(chasing)
 		{
+			animator.SetBool("isWalking", true);
 			if(Vector3.Distance(playerObject.transform.position, this.transform.position) > 1.0f)
 			{
 				Vector3 dir = playerObject.transform.position - this.transform.position;
 				this.transform.Translate(dir.normalized * movementSpeed * Time.deltaTime);
-				sprite.flipX = dir.x < 0; 
+				sprite.flipX = dir.x < 0;
 			}
-			animator.SetBool("isWalking", true);
+			else
+			{
+				playerObject.GetComponent<PlayerController>().Hit(15);
+				Destroy(this.gameObject);
+			}		
 		}
 		else
 		{

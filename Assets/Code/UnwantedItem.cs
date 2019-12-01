@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -26,8 +27,12 @@ public class UnwantedItem : MonoBehaviour
             System.Random rng = new System.Random();
 			GameState gs = GameObject.Find("GameManager").GetComponent<GameState>();
             gs.ResetGameStateToDefault();
-            gs.activePowerUp = (PowerUpType) rng.Next(0, Enum.GetNames(typeof (PowerUpType)).Length);		
-			gs.ActiveEnvironment = (EnvironmentType) rng.Next(0, Enum.GetNames(typeof(EnvironmentType)).Length);
+            gs.activePowerUp = (PowerUpType) rng.Next(0, Enum.GetNames(typeof (PowerUpType)).Length);
+			//var enums = Enum.GetNames(typeof(EnvironmentType)).Cast<EnvironmentType>();
+			List<EnvironmentType> types = new List<EnvironmentType> { EnvironmentType.Red, EnvironmentType.Green, EnvironmentType.Blue};
+			types.Remove(gs.ActiveEnvironment);
+			int index = rng.Next(types.Count);
+			gs.ActiveEnvironment = types[index];
             Destroy(this.gameObject);
         }
 

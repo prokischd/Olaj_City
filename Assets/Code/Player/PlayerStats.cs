@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -13,10 +11,16 @@ public class PlayerStats : MonoBehaviour
     {
 		pc = GetComponent<PlayerController>();
 		gs = GameState.GetGameState();
+		UpdateUI();
 	}
 
-    // Update is called once per frame
-    void Update()
+	private void UpdateUI()
+	{
+		//throw new NotImplementedException();
+	}
+
+	// Update is called once per frame
+	void Update()
     {
         if(playerHP <= 0)
 		{
@@ -27,10 +31,12 @@ public class PlayerStats : MonoBehaviour
 	public void LoseHP(float hitDamage)
 	{
 		playerHP -= hitDamage * gs.universalDamageModifier;
+		UpdateUI();
 	}
 
 	internal void GiveHP(int HP)
 	{
 		playerHP += HP;
+		UpdateUI();
 	}
 }

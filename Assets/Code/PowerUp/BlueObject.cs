@@ -26,6 +26,15 @@ public class BlueObject : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 	}
+	private void OnTriggerStay2D(Collider2D collision)
+	{
+		if(collision.gameObject.tag == Names.PLAYER_TAG && enabled)
+		{
+			collision.gameObject.GetComponent<PlayerController>().Hit(gs.blueObjectHitDamage);
+			SpawnDeathEffect();
+			Destroy(this.gameObject);
+		}
+	}
 
 	private void SpawnDeathEffect()
 	{

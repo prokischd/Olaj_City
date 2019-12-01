@@ -17,6 +17,8 @@ public class WatchTower : MonoBehaviour
 	private bool canRun = false;
 	private GameState gs;
 
+	public int HP = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,11 @@ public class WatchTower : MonoBehaviour
 		{
 			timer = 0.0f;
 		}
+
+		if(HP <= 0.0f)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -51,7 +58,10 @@ public class WatchTower : MonoBehaviour
 			canRun = true;
 			Debug.Log("Player came in range of tower!");
 		}
-	
+		else if(collision.gameObject.tag == Names.PROJECTILE_TAG)
+		{
+			HP -= 10;
+		}
 	}
 	private void OnTriggerExit2D(Collider2D collision)
 	{
@@ -66,7 +76,7 @@ public class WatchTower : MonoBehaviour
 	{
 		UnityEngine.Object ob = GetObject();
 		GameObject go = Instantiate(ob, spawnLocation.position, Quaternion.identity) as GameObject;
-		go.transform.localScale *= 3;
+		go.transform.localScale *= 2;
 		Vector3 dir = playerObject.transform.position - spawnLocation.position;
 		go.GetComponent<Rigidbody2D>().AddForce(dir.normalized * spawnerForce);
 	}

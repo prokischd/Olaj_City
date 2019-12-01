@@ -33,7 +33,7 @@ public class PowerUp : MonoBehaviour
                 break;
 
             case PowerUpType.ReverseControls:
-                ReverseControls();
+                //ReverseControls();
                 break;
 
             case PowerUpType.FasterTime:
@@ -58,7 +58,7 @@ public class PowerUp : MonoBehaviour
     public static void ExtraSpeed()
     {
         GameState gs = GameState.GetGameState();
-        gs.playerMovementSpeed += 0.4f;
+        gs.playerMovementSpeed += 0.2f;
     }
 
     public static void SlowerSpeed()
@@ -67,10 +67,10 @@ public class PowerUp : MonoBehaviour
         gs.playerMovementSpeed -= 0.1f;
     }
 
-    public static void ReverseControls()
+    public static void ReverseControls(bool enabled)
     {
-        GameState gs = GameState.GetGameState();
-        gs.reverseControls = true;
+		GameState gs = GameState.GetGameState();	
+		gs.reverseControls = enabled;
     }
 
     public static void BigAOE()

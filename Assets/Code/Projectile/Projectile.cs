@@ -5,6 +5,7 @@ public class Projectile : MonoBehaviour
 	public float bounceMagnitude = 30;
 	public int HP = 3;
 	public int hitDamage = 5;
+	public bool spawnedByPlayer = false;
     // Start is called before the first frame update
     void Start()
     {

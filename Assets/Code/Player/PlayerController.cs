@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 		sprite = transform.Find("SpriteObject").GetComponent<SpriteRenderer>();
 		animator = sprite.GetComponent<Animator>();
 		gs = GameState.GetGameState();
-		shootTimer = GameState.GetGameState().spawnTimerSeconds;
+		shootTimer = 0.0f;
 		playercontrol = new ActionControl();
 		camera = Camera.main;
 		aimTransform = transform.Find("AimObject");
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
 				if(shootTimer <= 0.0f)
 				{
 					ShootGreen();
-					shootTimer = gs.spawnTimerSeconds;
+					shootTimer = gs.greenSpawnTimerSeconds;
 				}			
 				break;
 		}
@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 	private void Stop(InputAction.CallbackContext obj)
 	{
 		MoveDirection = Vector2.zero;
-		animator.SetBool("isWalking", false);
+		animator?.SetBool("isWalking", false);
 	}
 	#endregion
 
@@ -139,7 +139,16 @@ public class PlayerController : MonoBehaviour
 	private void SpawnBlue()
 	{
 		GameObject go = Instantiate(blueObject, this.transform.position, Quaternion.identity) as GameObject;
+		SpawnedByPlayer(go);
 		//GameObject go = Instantiate(blueObject, this.transform.position - new Vector3(MoveDirection.x, MoveDirection.y, 0)* 5, Quaternion.identity) as GameObject;
+	}
+
+	private void SpawnedByPlayer(GameObject go)
+	{
+		if(go.GetComponent<Projectile>() is Projectile p)
+		{
+			p.spawnedByPlayer = true;
+		}
 	}
 
 	private void HandleEnvironmentAbilities()
@@ -223,6 +232,8 @@ public class PlayerController : MonoBehaviour
 	public void SetState(EnvironmentType environmentType)
 	{
 		this.environmentType = environmentType;
+		aimTransform.gameObject.SetActive(environmentType == EnvironmentType.Green);
+		PowerUp.ReverseControls(environmentType == EnvironmentType.Green);
 	}
 
 	private void ShootRed()
@@ -284,7 +295,7 @@ public class PlayerController : MonoBehaviour
 
 	internal void Die()
 	{
-		playercontrol.GamePlay.Disable();
+		//playercontrol.GamePlay.Disable();
 	}
 
 }

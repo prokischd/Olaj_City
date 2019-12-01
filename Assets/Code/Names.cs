@@ -6,4 +6,5 @@ public static class Names
 {
 	public static string PLAYER_TAG = "Player";
 	public static string ENEMY_TAG = "Enemy";
+	public static string PROJECTILE_TAG = "Projectile";
 }

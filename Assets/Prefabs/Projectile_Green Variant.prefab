@@ -10,7 +10,12 @@ PrefabInstance:
     - target: {fileID: 3300755756900427349, guid: 00fb427ce1059ea43a2e7b5a46b36dde,
         type: 3}
       propertyPath: m_Name
-      value: Projectile_Green
+      value: Projectile_Green Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300755756900427349, guid: 00fb427ce1059ea43a2e7b5a46b36dde,
+        type: 3}
+      propertyPath: m_TagString
+      value: Projectile
       objectReference: {fileID: 0}
     - target: {fileID: 821125472492619387, guid: 00fb427ce1059ea43a2e7b5a46b36dde,
         type: 3}

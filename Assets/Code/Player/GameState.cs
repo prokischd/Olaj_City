@@ -46,6 +46,7 @@ public class GameState : MonoBehaviour
     public float meteorSpeed = DEFAULT_METEOR_SPEED;
 	public int spawnCount = 4;
     public float spawnTimerSeconds = 0.6f;
+	public float greenSpawnTimerSeconds = 0.3f;
 	public float SpawnRadius = 3.0f;
 
 	//Environment
