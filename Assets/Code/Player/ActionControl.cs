@@ -57,6 +57,14 @@ public class @ActionControl : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""af13f179-0b0c-4896-a94a-1c3382043c87"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -173,7 +181,7 @@ public class @ActionControl : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5c07ec09-9ade-4b2a-9f6c-f609e5ceb79d"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -191,6 +199,28 @@ public class @ActionControl : IInputActionCollection, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a79f9110-8799-4058-bf46-d0672df619f0"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""388b2ca3-7119-4ebd-aae7-0035545b1010"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -204,6 +234,7 @@ public class @ActionControl : IInputActionCollection, IDisposable
         m_GamePlay_MouseAim = m_GamePlay.FindAction("MouseAim", throwIfNotFound: true);
         m_GamePlay_Shoot = m_GamePlay.FindAction("Shoot", throwIfNotFound: true);
         m_GamePlay_Dash = m_GamePlay.FindAction("Dash", throwIfNotFound: true);
+        m_GamePlay_Restart = m_GamePlay.FindAction("Restart", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -258,6 +289,7 @@ public class @ActionControl : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_MouseAim;
     private readonly InputAction m_GamePlay_Shoot;
     private readonly InputAction m_GamePlay_Dash;
+    private readonly InputAction m_GamePlay_Restart;
     public struct GamePlayActions
     {
         private @ActionControl m_Wrapper;
@@ -267,6 +299,7 @@ public class @ActionControl : IInputActionCollection, IDisposable
         public InputAction @MouseAim => m_Wrapper.m_GamePlay_MouseAim;
         public InputAction @Shoot => m_Wrapper.m_GamePlay_Shoot;
         public InputAction @Dash => m_Wrapper.m_GamePlay_Dash;
+        public InputAction @Restart => m_Wrapper.m_GamePlay_Restart;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -291,6 +324,9 @@ public class @ActionControl : IInputActionCollection, IDisposable
                 @Dash.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDash;
+                @Restart.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRestart;
+                @Restart.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRestart;
+                @Restart.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRestart;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -310,6 +346,9 @@ public class @ActionControl : IInputActionCollection, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @Restart.started += instance.OnRestart;
+                @Restart.performed += instance.OnRestart;
+                @Restart.canceled += instance.OnRestart;
             }
         }
     }
@@ -321,5 +360,6 @@ public class @ActionControl : IInputActionCollection, IDisposable
         void OnMouseAim(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnRestart(InputAction.CallbackContext context);
     }
 }
