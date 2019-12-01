@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2084470881291721360}
   - component: {fileID: 5183770022847529828}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
