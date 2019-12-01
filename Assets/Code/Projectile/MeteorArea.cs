@@ -39,9 +39,10 @@ public class MeteorArea : MonoBehaviour
             this.destroyed = true;
             if (playerInside)
             {
-                playerStats.LoseHP(60);
-            }
-            Destroy(other.gameObject);
+				playerStats.GetComponent<PlayerController>().Hit(60);
+			}
+
+			Destroy(other.gameObject);
             Destroy(this.gameObject);
             Destroy(transform.parent.gameObject);
         }

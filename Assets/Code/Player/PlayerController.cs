@@ -271,6 +271,7 @@ public class PlayerController : MonoBehaviour
 		Vector3 dir3 = new Vector3(dir.x, dir.y, 0);
 		GameObject go = Instantiate(redObject, position: transform.position + dir3 * gs.SpawnRadius, Quaternion.identity) as GameObject;
 		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * gs.playerProjectileForce);
+		SpawnedByPlayer(go);
 	}
 
 	private void ShootGreen()
@@ -282,6 +283,7 @@ public class PlayerController : MonoBehaviour
 		Vector3 dir = new Vector3(x, y, 0);
 		GameObject go = Instantiate(greenObject, position: this.transform.position + dir * gs.SpawnRadius, Quaternion.identity) as GameObject;
 		go.GetComponent<Rigidbody2D>().AddForce(dir * gs.playerGreenProjectileForce);
+		SpawnedByPlayer(go);
 	}
 
 	public void LoseHpEverySecond()

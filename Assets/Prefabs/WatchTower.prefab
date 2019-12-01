@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3052173877331315429}
   m_Layer: 0
   m_Name: WatchTower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
     type: 3}
   spawnTime: 1
   spawnerForce: 120
+  HP: 100
 --- !u!61 &648236882066024038
 BoxCollider2D:
   m_ObjectHideFlags: 0

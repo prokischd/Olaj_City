@@ -4993,8 +4993,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4678514257891313336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 24.4, z: 0}
-  m_LocalScale: {x: 1.0663435, y: 0.9333757, z: 1.0403352}
+  m_LocalPosition: {x: 0.1, y: 23.088, z: 0}
+  m_LocalScale: {x: 2.112, y: 1.8486439, z: 2.0604877}
   m_Children:
   - {fileID: 703211072100939405}
   - {fileID: 3489071377817647429}
@@ -5026,7 +5026,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.5, y: 3.66}
+  m_Size: {x: 3.12, y: 3.79}
   m_EdgeRadius: 0
 --- !u!1 &4885435536125980575
 GameObject:
@@ -5157,7 +5157,7 @@ Transform:
   m_GameObject: {fileID: 6980945048824814158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.2, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.1017816, y: 2.1017816, z: 2.1017816}
   m_Children:
   - {fileID: 8804245100702670648}
   m_Father: {fileID: 1640483695376598263}
@@ -5178,7 +5178,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.36
+  m_Radius: 2.06
 --- !u!50 &7764640425397877688
 Rigidbody2D:
   serializedVersion: 4

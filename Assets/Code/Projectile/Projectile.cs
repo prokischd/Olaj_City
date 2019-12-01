@@ -48,11 +48,19 @@ public class Projectile : MonoBehaviour
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		if(spawnedByPlayer)
+		{
+
+		}
 		if(collision.gameObject.tag == Names.ENEMY_BODY_TAG)
 		{
 			collision.gameObject.transform.parent.GetComponent<EnemyAI>().Hit(hitDamage);
 			Instantiate(particlePrefab, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
+		}
+		else if(collision.gameObject.tag == Names.TOWER_TAG && spawnedByPlayer)
+		{
+			collision.gameObject.GetComponent<WatchTower>().Hit(hitDamage);
 		}
 	}
 }

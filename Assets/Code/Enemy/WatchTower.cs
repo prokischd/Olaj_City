@@ -58,11 +58,13 @@ public class WatchTower : MonoBehaviour
 			canRun = true;
 			Debug.Log("Player came in range of tower!");
 		}
-		else if(collision.gameObject.tag == Names.PROJECTILE_TAG)
-		{
-			HP -= 10;
-		}
 	}
+
+	internal void Hit(int hitDamage)
+	{
+		HP -= hitDamage;
+	}
+
 	private void OnTriggerExit2D(Collider2D collision)
 	{
 		if(collision.gameObject.tag == Names.PLAYER_TAG)
@@ -76,7 +78,7 @@ public class WatchTower : MonoBehaviour
 	{
 		UnityEngine.Object ob = GetObject();
 		GameObject go = Instantiate(ob, spawnLocation.position, Quaternion.identity) as GameObject;
-		go.transform.localScale *= 2;
+		go.transform.localScale *= 1.2f;
 		Vector3 dir = playerObject.transform.position - spawnLocation.position;
 		go.GetComponent<Rigidbody2D>().AddForce(dir.normalized * spawnerForce);
 	}

@@ -8,4 +8,5 @@ public static class Names
 	public static string ENEMY_TAG = "Enemy";
 	public static string ENEMY_BODY_TAG = "EnemyBody";
 	public static string PROJECTILE_TAG = "Projectile";
+	public static string TOWER_TAG= "Tower";
 }
