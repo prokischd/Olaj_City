@@ -63,6 +63,11 @@ public class PlayerController : MonoBehaviour
 		shootTimer -= Time.deltaTime;
 		dashTimer -= Time.deltaTime;
 	}
+	bool destroyed = false;
+	private void OnDestroy()
+	{
+		destroyed = true;
+	}
 
 	#region INPUT
 	private void Dash(InputAction.CallbackContext obj)
@@ -123,6 +128,10 @@ public class PlayerController : MonoBehaviour
 	}
 	private void Stop(InputAction.CallbackContext obj)
 	{
+		if(destroyed)
+		{
+			return;
+		}
 		MoveDirection = Vector2.zero;
 		animator?.SetBool("isWalking", false);
 	}

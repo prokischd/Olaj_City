@@ -115,7 +115,7 @@ public class GameState : MonoBehaviour
 
 	private void SetMap(EnvironmentType lastEnvironmentType, EnvironmentType activeEnvironmentType)
 	{
-		var go = GameObject.FindGameObjectWithTag("Ground");
+		var go = GameObject.FindGameObjectWithTag("CHANGE_GROUND");
 		switch(activeEnvironmentType)
 		{
 			case EnvironmentType.Red:
