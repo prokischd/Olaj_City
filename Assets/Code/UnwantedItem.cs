@@ -8,6 +8,7 @@ using UnityEngine;
 public class UnwantedItem : MonoBehaviour
 {
     // Start is called before the first frame update
+    public UnwantedItemSpawner spawner;
     void Start()
     {
         
@@ -22,7 +23,7 @@ public class UnwantedItem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject.tag == "Player" )
+        if (other.gameObject.tag == "Player")
         {
             System.Random rng = new System.Random();
 			GameState gs = GameObject.Find("GameManager").GetComponent<GameState>();
@@ -33,6 +34,11 @@ public class UnwantedItem : MonoBehaviour
 			types.Remove(gs.ActiveEnvironment);
 			int index = rng.Next(types.Count);
 			gs.ActiveEnvironment = types[index];
+            if(spawner != null)
+            {
+                spawner.hasNoItem = true;
+                spawner.timer = 0.0f;
+            }
             Destroy(this.gameObject);
         }
 
