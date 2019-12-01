@@ -6477,7 +6477,7 @@ GameObject:
   - component: {fileID: 862061561}
   m_Layer: 5
   m_Name: Blue_Bar
-  m_TagString: GreenBar
+  m_TagString: BlueBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12131,6 +12131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObj: {fileID: 1772515970}
+  enabled: 1
 --- !u!50 &1065139949
 Rigidbody2D:
   serializedVersion: 4
@@ -14351,6 +14352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObj: {fileID: 429901599}
+  enabled: 1
 --- !u!50 &1096606668
 Rigidbody2D:
   serializedVersion: 4
@@ -25013,6 +25015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObj: {fileID: 1404801023}
+  enabled: 1
 --- !u!50 &2121331226
 Rigidbody2D:
   serializedVersion: 4
