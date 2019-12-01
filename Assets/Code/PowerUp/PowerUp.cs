@@ -33,7 +33,7 @@ public class PowerUp : MonoBehaviour
                 break;
 
             case PowerUpType.ReverseControls:
-                ReverseControls();
+                ReverseControls(true);
                 break;
 
             case PowerUpType.FasterTime:
