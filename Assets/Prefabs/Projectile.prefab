@@ -138,6 +138,8 @@ MonoBehaviour:
   HP: 3
   hitDamage: 5
   spawnedByPlayer: 0
+  particlePrefab: {fileID: 602836328878329554, guid: 223523007bbe9474ea37f5d084086c2d,
+    type: 3}
 --- !u!95 &1642431339768343304
 Animator:
   serializedVersion: 3
