@@ -36,6 +36,10 @@ public class Projectile : MonoBehaviour
 			Instantiate(particlePrefab, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
 		}
+		else if(collision.gameObject.tag == Names.BOSS_TAG && spawnedByPlayer)
+		{
+			collision.gameObject.transform.parent.GetComponent<Boss>().Hit(hitDamage);
+		}
 		else
 		{
 			HP--;
@@ -48,10 +52,6 @@ public class Projectile : MonoBehaviour
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if(spawnedByPlayer)
-		{
-
-		}
 		if(collision.gameObject.tag == Names.ENEMY_BODY_TAG)
 		{
 			collision.gameObject.transform.parent.GetComponent<EnemyAI>().Hit(hitDamage);
@@ -61,6 +61,10 @@ public class Projectile : MonoBehaviour
 		else if(collision.gameObject.tag == Names.TOWER_TAG && spawnedByPlayer)
 		{
 			collision.gameObject.GetComponent<WatchTower>().Hit(hitDamage);
+		}
+		else if(collision.gameObject.tag == Names.BOSS_TAG && spawnedByPlayer)
+		{
+			collision.gameObject.transform.parent.GetComponent<Boss>().Hit(hitDamage);
 		}
 	}
 }

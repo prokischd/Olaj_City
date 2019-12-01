@@ -245,6 +245,20 @@ public class PlayerController : MonoBehaviour
 		this.environmentType = environmentType;
 		aimTransform.gameObject.SetActive(environmentType == EnvironmentType.Green);
 		PowerUp.ReverseControls(environmentType == EnvironmentType.Green);
+		Slide(environmentType == EnvironmentType.Blue);
+
+	}
+
+	private void Slide(bool v)
+	{
+		if(v)
+		{
+			rb.angularDrag = 5;
+		}
+		else
+		{
+			rb.angularDrag = 0;
+		}
 	}
 
 	private void ShootRed()
@@ -293,6 +307,7 @@ public class PlayerController : MonoBehaviour
 		if(loseHpTime >= 1)
 		{
 			playerStats.LoseHP(1);
+			animator.SetTrigger("gotHit");
 			loseHpTime = 0f;
 		}
 	}

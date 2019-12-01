@@ -49,13 +49,14 @@ MonoBehaviour:
   powerUpTimer: 15
   playerMovementSpeed: 0.2
   reverseControls: 0
-  playerProjectileForce: 300
+  playerProjectileForce: 538.85
   blueObjectSpawnTime: 1
   enemyMovementSpeed: 3.12
   spawnerProjectileForce: 100
   meteorSpeed: 5
   spawnCount: 8
   spawnTimerSeconds: 3
+  greenSpawnTimerSeconds: 0.3
   SpawnRadius: 4
   environmentalStrength: 1
   blueObjectHitDamage: 10
