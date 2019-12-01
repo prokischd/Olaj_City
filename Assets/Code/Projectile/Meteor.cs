@@ -8,6 +8,7 @@ public class Meteor : MonoBehaviour
     private GameObject meteor;
     private MeteorArea meteorArea;
     private GameState gs;
+	private bool destroyed = false;
     void Start()
     {
         meteorArea = GetComponentInChildren<MeteorArea>();
@@ -16,10 +17,15 @@ public class Meteor : MonoBehaviour
         this.transform.localScale = this.transform.localScale * gs.AOE;
     }
 
-    // Update is called once per frame
-    void Update()
+	private void OnDestroy()
+	{
+		destroyed = true;
+	}
+	// Update is called once per frame
+	void Update()
     {
-        if (!meteorArea.destroyed)
+
+        if (!destroyed && !meteorArea.destroyed)
         {
             meteor.transform.Translate(0, -1.0f * Time.deltaTime * gs.meteorSpeed, 0);
         }

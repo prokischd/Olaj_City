@@ -49,6 +49,10 @@ public class EnemyAI : MonoBehaviour
 				this.transform.Translate(dir.normalized * movementSpeed * Time.deltaTime);
 			}
 		}
+		if(HP <= 0)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 
 	internal void Hit(int greenObjectHitDamage)

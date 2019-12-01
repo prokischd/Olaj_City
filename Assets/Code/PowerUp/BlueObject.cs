@@ -19,7 +19,7 @@ public class BlueObject : MonoBehaviour
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if(collision.gameObject.tag == Names.PLAYER_TAG)
+		if(collision.gameObject.tag == Names.PLAYER_TAG && enabled)
 		{
 			collision.gameObject.GetComponent<PlayerController>().Hit(gs.blueObjectHitDamage);
 			SpawnDeathEffect();

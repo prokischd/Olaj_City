@@ -48,7 +48,6 @@ MonoBehaviour:
   activePowerUp: 0
   powerUpTimer: 15
   playerMovementSpeed: 0.2
-  playerHP: 100
   reverseControls: 0
   playerProjectileForce: 300
   blueObjectSpawnTime: 1
@@ -56,13 +55,11 @@ MonoBehaviour:
   spawnerProjectileForce: 100
   meteorSpeed: 5
   spawnCount: 8
-  spawnTimerSeconds: 1
+  spawnTimerSeconds: 3
   SpawnRadius: 4
   environmentalStrength: 1
-  activeEnvironmentType: 0
-  player: {fileID: 0}
-  environment: {fileID: 0}
   blueObjectHitDamage: 10
   greenObjectHitDamage: 20
-  blueObjectDestroyTime: 11
-  playerGreenProjectileForce: 500
+  blueObjectDestroyTime: 10
+  playerGreenProjectileForce: 800
+  activeEnvironmentType: 0

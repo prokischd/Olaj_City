@@ -6,39 +6,37 @@ public class PlayerController : MonoBehaviour
 {
 	public Camera camera;
 	public Rigidbody2D rb;
+	public GameObject redObject;
+	public GameObject greenObject;
+	public GameObject blueObject;
+	public float dashDistance = 4.0f;
+	public float dashTimer = 2.0f;
+    public GameObject meteor;
 
 	private bool controllerInput = false;
-	
 	private Transform aimTransform;
 	private ActionControl playercontrol;
 	private Vector2 MoveDirection;
 	private PlayerStats playerStats;
-
 	private Vector2 rightStickPos = Vector2.up;
 	private EnvironmentType environmentType;
-
 	private SpriteRenderer sprite;
 	private float shootTimer;
 	private float loseHpTime = 0.0f;
     private float meteorSpawnTimer = 4.5f;
     private float meteorTimer = 0.0f;
     private float meteorSpawnRadius = 10.0f;
-	GameState gs;
-
-	//RED
-	public GameObject redObject;
-	//GREE
-	public GameObject greenObject;
-	//BLUE
-	public GameObject blueObject;
+	private GameState gs;
 	private Vector3 lastMoveDir = Vector3.zero;
-	public float dashDistance = 4.0f;
-	public float dashTimer = 2.0f;
-    public GameObject meteor;
+	private Animator animator;
+	private LayerMask mask = 8;
+	private Vector3 vel;
+	private float smoothDamp = 0.2f;
 
-    void Start()
+	void Start()
     {
 		sprite = transform.Find("SpriteObject").GetComponent<SpriteRenderer>();
+		animator = sprite.GetComponent<Animator>();
 		gs = GameState.GetGameState();
 		shootTimer = GameState.GetGameState().spawnTimerSeconds;
 		playercontrol = new ActionControl();
@@ -48,20 +46,26 @@ public class PlayerController : MonoBehaviour
 		playerStats = GetComponent<PlayerStats>();
 
 		playercontrol.GamePlay.Enable();
-
 		playercontrol.GamePlay.Move.performed += Move;
 		playercontrol.GamePlay.Move.canceled += Stop;
-
 		playercontrol.GamePlay.Aim.performed += ControllerRightStick;
-		
 		playercontrol.GamePlay.MouseAim.performed += ctx => controllerInput = false;
 		playercontrol.GamePlay.Shoot.performed += Shoot;
 		playercontrol.GamePlay.Dash.performed += Dash;
 	}
 
+	void Update()
+	{
+		HandleEnvironmentAbilities();
+		HandlePlayer();
+		ManagePowerUpTimer();
+		shootTimer -= Time.deltaTime;
+		dashTimer -= Time.deltaTime;
+	}
+
+	#region INPUT
 	private void Dash(InputAction.CallbackContext obj)
 	{
-		Vector3 pos = transform.position;
 		if(CanDash(MoveDirection, dashDistance))
 		{
 			transform.position += new Vector3(MoveDirection.x, MoveDirection.y,0) * dashDistance;
@@ -69,11 +73,11 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 	private bool CanDash(Vector3 dir, float distance)
-	{
-		LayerMask mask = 8;
+	{		
 		RaycastHit2D obj = Physics2D.Raycast(transform.position, dir, distance, mask);
 		return obj.collider == null && dashTimer < 0.0f;
 	}
+
 	private void Shoot(InputAction.CallbackContext obj)
 	{
 		switch(environmentType)
@@ -96,6 +100,38 @@ public class PlayerController : MonoBehaviour
 				break;
 		}
 	}
+	private void ControllerRightStick(InputAction.CallbackContext obj)
+	{
+		controllerInput = true;
+		rightStickPos = obj.ReadValue<Vector2>();
+	}
+	private void Move(InputAction.CallbackContext obj)
+	{
+		if(gs.reverseControls)
+		{
+			MoveDirection = -obj.ReadValue<Vector2>();
+		}
+		else
+		{
+			MoveDirection = obj.ReadValue<Vector2>();
+		}
+
+		if(MoveDirection.x == 0)
+		{
+			animator.SetBool("isWalking", false); 
+			return;
+		}
+		else
+		{
+			animator.SetBool("isWalking", true);
+		}
+		sprite.flipX = MoveDirection.x < 0;
+	}
+	private void Stop(InputAction.CallbackContext obj)
+	{
+		MoveDirection = Vector2.zero;
+	}
+	#endregion
 
 	private void ShootBlue()
 	{
@@ -108,51 +144,8 @@ public class PlayerController : MonoBehaviour
 
 	private void SpawnBlue()
 	{
-		GameObject go = Instantiate(blueObject, this.transform.position - new Vector3(MoveDirection.x, MoveDirection.y, 0)* 5, Quaternion.identity) as GameObject;
-	}
-
-	private void ControllerRightStick(InputAction.CallbackContext obj)
-	{
-		controllerInput = true;
-		rightStickPos = obj.ReadValue<Vector2>();
-	}
-
-	private void OnDestroy()
-	{
-		playercontrol.GamePlay.Move.performed -= Move;
-		playercontrol.GamePlay.Move.canceled -= Stop;
-		playercontrol = null;
-	}
-
-	private void Move(InputAction.CallbackContext obj)
-	{
-        if (gs.reverseControls)
-        {
-            MoveDirection = -obj.ReadValue<Vector2>();
-        }
-        else
-        {
-            MoveDirection = obj.ReadValue<Vector2>();
-        }
-
-		if(MoveDirection.x == 0)
-		{
-			return;
-		}
-		sprite.flipX = MoveDirection.x < 0;
-	}
-	private void Stop(InputAction.CallbackContext obj)
-	{
-		MoveDirection = Vector2.zero;
-	}
-
-	void Update()
-    {
-		HandleEnvironmentAbilities();
-		HandlePlayer();
-        ManagePowerUpTimer();
-        shootTimer -= Time.deltaTime;
-		dashTimer -= Time.deltaTime;
+		GameObject go = Instantiate(blueObject, this.transform.position, Quaternion.identity) as GameObject;
+		//GameObject go = Instantiate(blueObject, this.transform.position - new Vector3(MoveDirection.x, MoveDirection.y, 0)* 5, Quaternion.identity) as GameObject;
 	}
 
 	private void HandleEnvironmentAbilities()
@@ -160,13 +153,7 @@ public class PlayerController : MonoBehaviour
 		switch(environmentType)
 		{
 			case EnvironmentType.Red:
-                meteorTimer += Time.deltaTime;
-                if(meteorTimer >= meteorSpawnTimer)
-                {
-                    meteorTimer = 0.0f;
-                    Vector3  pos = (Vector2)transform.position + UnityEngine.Random.insideUnitCircle * meteorSpawnRadius;
-                    Instantiate(meteor, pos, Quaternion.identity);
-                }
+				HandleMeteor();
 				break;
 			case EnvironmentType.Green:
 				
@@ -177,6 +164,16 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	private void HandleMeteor()
+	{
+		meteorTimer += Time.deltaTime;
+		if(meteorTimer >= meteorSpawnTimer)
+		{
+			meteorTimer = 0.0f;
+			Vector3 pos = (Vector2)transform.position + UnityEngine.Random.insideUnitCircle * meteorSpawnRadius;
+			Instantiate(meteor, pos, Quaternion.identity);
+		}
+	}
 
 	private void HandlePlayer()
 	{
@@ -201,11 +198,11 @@ public class PlayerController : MonoBehaviour
 			aimTransform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 		}
 	}
-	private Vector3 vel;
-	private float smoothDamp = 0.2f;
+
 	private void AdjustCamera(Vector2 pos)
 	{
-		camera.transform.parent.position = Vector3.SmoothDamp(camera.transform.parent.position, new Vector3(this.transform.position.x, this.transform.position.y, -5), ref vel, smoothDamp);
+		Vector3 cameraTo = new Vector3(this.transform.position.x, this.transform.position.y, -5);
+		camera.transform.parent.position = Vector3.SmoothDamp(camera.transform.parent.position, cameraTo, ref vel, smoothDamp);
 	}
 
 	private Vector2 GetPositionToMove()
@@ -219,10 +216,11 @@ public class PlayerController : MonoBehaviour
 
 	public void Hit(int hitDamage)
 	{
+		animator.SetTrigger("gotHit");
 		playerStats.LoseHP(hitDamage);
 	}
 
-	internal void Heal(int HP)
+	public void Heal(int HP)
 	{
 		playerStats.GiveHP(HP);
 	}
@@ -289,4 +287,10 @@ public class PlayerController : MonoBehaviour
 			LoseHpEverySecond();
 		}
 	}
+
+	internal void Die()
+	{
+		playercontrol.GamePlay.Disable();
+	}
+
 }

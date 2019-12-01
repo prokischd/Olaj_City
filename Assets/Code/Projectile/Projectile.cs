@@ -27,6 +27,11 @@ public class Projectile : MonoBehaviour
 			collision.gameObject.GetComponent<PlayerController>().Hit(hitDamage);
 			Destroy(this.gameObject);
 		}
+		else if(collision.gameObject.tag == Names.ENEMY_TAG)
+		{
+			collision.gameObject.GetComponent<EnemyAI>().Hit(hitDamage);
+			Destroy(this.gameObject);
+		}
 		else
 		{
 			HP--;

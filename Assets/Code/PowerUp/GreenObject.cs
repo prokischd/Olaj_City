@@ -28,7 +28,7 @@ public class GreenObject :MonoBehaviour
 		else if(collision.gameObject.tag == Names.ENEMY_TAG)
 		{
 			collision.gameObject.GetComponent<EnemyAI>().Hit(gs.greenObjectHitDamage);
-			collision.gameObject.GetComponent<PlayerController>().Heal(gs.greenObjectHitDamage);
+			FindObjectOfType<PlayerController>().Heal(gs.greenObjectHitDamage);
 		}
 	}
 }

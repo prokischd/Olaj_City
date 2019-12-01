@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-	public UnityEngine.Object projectile;
+	public UnityEngine.Object redObject;
+	public UnityEngine.Object blueObject;
+	public UnityEngine.Object greenObject;
+
 	private float timer = 0.0f;
 	GameState gs;
 	void Start()
@@ -42,7 +45,21 @@ public class Spawner : MonoBehaviour
 	{
 		Vector3 dir3 = new Vector3(dir.x, dir.y, 0);
 		var pos = (transform.position + dir3 * gs.SpawnRadius);
-		GameObject go = Instantiate(projectile, position: pos, Quaternion.identity) as GameObject;
+		GameObject go = Instantiate(GetObject(), position: pos, Quaternion.identity) as GameObject;
 		go.GetComponent<Rigidbody2D>().AddForce(dir3.normalized * gs.spawnerProjectileForce);
+	}
+
+	private UnityEngine.Object GetObject()
+	{
+		switch(gs.ActiveEnvironment)
+		{
+			case EnvironmentType.Red:
+				return redObject;
+			case EnvironmentType.Green:
+				return greenObject;
+			case EnvironmentType.Blue:
+				return blueObject;
+		}
+		return null;
 	}
 }
