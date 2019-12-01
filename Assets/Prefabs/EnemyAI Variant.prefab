@@ -67,10 +67,61 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7123554830252315145, guid: 6ea496480cb8570449014a9408580c07,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7123554830252315145, guid: 6ea496480cb8570449014a9408580c07,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1896125953857864677, guid: 6ea496480cb8570449014a9408580c07,
         type: 3}
       propertyPath: movementSpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423272085787482266, guid: 6ea496480cb8570449014a9408580c07,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6147914041416813063, guid: 274fbe9610bbe44fdb5a225a3ca2f990,
+        type: 3}
+    - target: {fileID: 8423272085787482266, guid: 6ea496480cb8570449014a9408580c07,
+        type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423272085787482266, guid: 6ea496480cb8570449014a9408580c07,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9811321
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423272085787482266, guid: 6ea496480cb8570449014a9408580c07,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.69882524
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423272085787482266, guid: 6ea496480cb8570449014a9408580c07,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.69882524
+      objectReference: {fileID: 0}
+    - target: {fileID: -5441416797622597694, guid: 6ea496480cb8570449014a9408580c07,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 58eb816c2b4ec4ab990b65fab205ce27, type: 2}
+    - target: {fileID: 7577447880376361149, guid: 6ea496480cb8570449014a9408580c07,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.8228059
+      objectReference: {fileID: 0}
+    - target: {fileID: 7577447880376361149, guid: 6ea496480cb8570449014a9408580c07,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 3.094388
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ea496480cb8570449014a9408580c07, type: 3}
