@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-	public GameObject sprite;
+	public int HP = 500;
+	private Animator animator;
+	public GameObject boss;
 	public Transform location1;
 	public Transform location2;
 	public Transform location3;
@@ -18,7 +20,7 @@ public class Boss : MonoBehaviour
 	public UnityEngine.Object greenObject;
 	private System.Random rng = new System.Random();
 
-	private float phaseTimer = 10.0f;
+	private float phaseTimer = 5.0f;
 	private float timer = 0.0f;
 
 	private Transform currentLocation;
@@ -26,16 +28,17 @@ public class Boss : MonoBehaviour
 	private void Start()
 	{
 		gs = GameState.GetGameState();
-		sprite.SetActive(false);
+		boss.SetActive(false);
 		locations.Add(location1);
 		locations.Add(location2);
 		locations.Add(location3);
 		locations.Add(location4);
+		animator = transform.Find("Boss_Devil_Prefab").GetComponent<Animator>();
 	}
-
+	private bool canStart = true;
 	private void Update()
 	{
-		if(timer >= phaseTimer)
+		if(timer >= phaseTimer && canStart)
 		{
 			StartCoroutine("BossFlow");
 			timer = 0.0f;
@@ -45,14 +48,19 @@ public class Boss : MonoBehaviour
 
 	private IEnumerator BossFlow()
 	{
+		canStart = false;
+		boss.SetActive(true);
 		int idx = rng.Next(locations.Count);
 		currentLocation = locations[idx];
+		boss.transform.position = currentLocation.position;
 		SpawnProjectiles();
 		yield return new WaitForSeconds(3.0f);
 		SpawnProjectiles();
 		yield return new WaitForSeconds(3.0f);
 		SpawnProjectiles();
 		timer = 0.0f;
+		boss.SetActive(false);
+		canStart = true;
 	}
 
 	private void SpawnProjectiles()
@@ -89,5 +97,10 @@ public class Boss : MonoBehaviour
 				return blueObject;
 		}
 		return null;
+	}
+	public void Hit(int damage)
+	{
+		HP -= damage;
+		animator.SetTrigger("gotHit");
 	}
 }
