@@ -19,6 +19,10 @@ public class PlayerStats : MonoBehaviour
 
 	private void UpdateUI()
 	{
+		if(UIObject == null)
+		{
+			return;
+		}
 
 		var rect = UIObject.GetComponent<RectTransform>();
 		var newScale = rect.localScale;

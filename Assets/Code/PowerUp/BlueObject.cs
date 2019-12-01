@@ -25,6 +25,13 @@ public class BlueObject : MonoBehaviour
 			SpawnDeathEffect();
 			Destroy(this.gameObject);
 		}
+		else if(collision.gameObject.tag == Names.ENEMY_BODY_TAG)
+		{
+			collision.gameObject.transform.parent.GetComponent<EnemyAI>().Hit(gs.blueObjectHitDamage);
+
+			SpawnDeathEffect();
+			Destroy(this.gameObject);
+		}
 	}
 	private void OnTriggerStay2D(Collider2D collision)
 	{
@@ -39,5 +46,6 @@ public class BlueObject : MonoBehaviour
 	private void SpawnDeathEffect()
 	{
 		// TODO
+		// 	Instantiate(particlePrefab, transform.position, Quaternion.identity);
 	}
 }
