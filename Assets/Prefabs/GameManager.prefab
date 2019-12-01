@@ -58,7 +58,7 @@ MonoBehaviour:
   bossSpawnCount: 10
   spawnTimerSeconds: 3
   playerSpawnSeconds: 0.6
-  greenSpawnTimerSeconds: 0.5
+  greenSpawnTimerSeconds: 0.25
   SpawnRadius: 4
   blueObjectHitDamage: 10
   greenObjectHitDamage: 20
