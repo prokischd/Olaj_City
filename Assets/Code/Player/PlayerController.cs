@@ -191,7 +191,14 @@ public class PlayerController : MonoBehaviour
 	private void HandlePlayer()
 	{
 		Vector2 pos = GetPositionToMove();
-		rb.MovePosition(pos);
+        if(gs.ActiveEnvironment == EnvironmentType.Blue)
+        {
+            rb.AddForce(MoveDirection * gs.playerMovementSpeed * 20);
+        }
+        else
+        {
+            rb.MovePosition(pos);
+        }
 		AdjustCamera(pos);
 		RotateLine();
 	}

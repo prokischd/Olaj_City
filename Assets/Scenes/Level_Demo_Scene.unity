@@ -21300,6 +21300,16 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2866729828378044341, guid: 88836c9338262674180b3b0c1385bc16,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 06ee5fb35bb5c3c4ca796f6512f440a1, type: 2}
+    - target: {fileID: 2866729828378044350, guid: 88836c9338262674180b3b0c1385bc16,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 06ee5fb35bb5c3c4ca796f6512f440a1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88836c9338262674180b3b0c1385bc16, type: 3}
 --- !u!1 &2043027627
