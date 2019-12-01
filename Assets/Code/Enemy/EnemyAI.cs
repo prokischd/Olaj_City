@@ -12,9 +12,13 @@ public class EnemyAI : MonoBehaviour
 	private GameState gs;
 	private GameObject playerObject;
 	private bool chasing = false;
+	private Animator animator;
+	private SpriteRenderer sprite;
 	// Start is called before the first frame update
 	void Start()
     {
+		sprite = GetComponent<SpriteRenderer>();
+		animator = GetComponent<Animator>();
 		if(GetComponent<Spawner>() is Spawner spawner)
 		{
 			spawner.enabled = false;
@@ -47,7 +51,13 @@ public class EnemyAI : MonoBehaviour
 			{
 				Vector3 dir = playerObject.transform.position - this.transform.position;
 				this.transform.Translate(dir.normalized * movementSpeed * Time.deltaTime);
+				sprite.flipX = dir.x < 0; 
 			}
+			animator.SetBool("isWalking", true);
+		}
+		else
+		{
+			animator.SetBool("isWalking", false);
 		}
 		if(HP <= 0)
 		{
@@ -57,6 +67,7 @@ public class EnemyAI : MonoBehaviour
 
 	internal void Hit(int greenObjectHitDamage)
 	{
+		animator.SetTrigger("gotHit");
 		HP -= greenObjectHitDamage * gs.universalDamageModifier;
 	}
 

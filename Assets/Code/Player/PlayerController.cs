@@ -116,20 +116,14 @@ public class PlayerController : MonoBehaviour
 			MoveDirection = obj.ReadValue<Vector2>();
 		}
 
-		if(MoveDirection.x == 0)
-		{
-			animator.SetBool("isWalking", false); 
-			return;
-		}
-		else
-		{
-			animator.SetBool("isWalking", true);
-		}
+		animator.SetBool("isWalking", true);
+		
 		sprite.flipX = MoveDirection.x < 0;
 	}
 	private void Stop(InputAction.CallbackContext obj)
 	{
 		MoveDirection = Vector2.zero;
+		animator.SetBool("isWalking", false);
 	}
 	#endregion
 
