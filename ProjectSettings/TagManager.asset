@@ -16,6 +16,7 @@ TagManager:
   - EnemyBody
   - Tower
   - Boss
+  - BlueBar
   layers:
   - Default
   - TransparentFX
