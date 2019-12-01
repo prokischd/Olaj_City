@@ -57,7 +57,14 @@ public class PlayerController : MonoBehaviour
 		playercontrol.GamePlay.MouseAim.performed += ctx => controllerInput = false;
 		playercontrol.GamePlay.Shoot.performed += Shoot;
 		playercontrol.GamePlay.Dash.performed += Dash;
-	}
+        playercontrol.GamePlay.Restart.performed += Restart;
+    }
+
+    private void Restart(InputAction.CallbackContext obj)
+    {
+        gs.ResetGameStateToDefault();
+        Application.LoadLevel(0);
+    }
 
     void OnDestroy()
     {
@@ -65,9 +72,9 @@ public class PlayerController : MonoBehaviour
         playercontrol.GamePlay.Move.performed -= Move;
         playercontrol.GamePlay.Move.canceled -= Stop;
         playercontrol.GamePlay.Aim.performed -= ControllerRightStick;
-        
         playercontrol.GamePlay.Shoot.performed -= Shoot;
         playercontrol.GamePlay.Dash.performed -= Dash;
+        playercontrol.GamePlay.Restart.performed -= Restart;
     }
 
 	void Update()
@@ -77,12 +84,9 @@ public class PlayerController : MonoBehaviour
 		ManagePowerUpTimer();
 		shootTimer -= Time.deltaTime;
 		dashTimer -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            gs.ResetGameStateToDefault();
-            Application.LoadLevel(0);
-        }
+        
     }
+
 	bool destroyed = false;
 	#region INPUT
 	private void Dash(InputAction.CallbackContext obj)
