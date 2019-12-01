@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7473316740921532080}
   - component: {fileID: 1778693259}
+  - component: {fileID: 6489840083711576012}
   m_Layer: 9
   m_Name: Boss_Devil_Prefab
   m_TagString: Untagged
@@ -48,6 +49,25 @@ CircleCollider2D:
   m_Offset: {x: 0.18972494, y: 0}
   serializedVersion: 2
   m_Radius: 0.77404565
+--- !u!95 &6489840083711576012
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7473316740921532081}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 800ba6786f17344b7afdcf66a407c701, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7473316742691399540
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +78,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7473316742691399531}
   - component: {fileID: 7473316742691399529}
-  - component: {fileID: 7473316742691399530}
   m_Layer: 9
   m_Name: Boss_Anim_Sheet_0
   m_TagString: Untagged
@@ -130,22 +149,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!95 &7473316742691399530
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7473316742691399540}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 800ba6786f17344b7afdcf66a407c701, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
