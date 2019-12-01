@@ -36,11 +36,13 @@ public class PlayerController : MonoBehaviour
 	private float smoothDamp = 0.2f;
 
 	private RectTransform blueBar;
+	private SpriteRenderer halo;
 
 	void Start()
     {
 		blueBar = GameObject.FindGameObjectWithTag("BlueBar").GetComponent<RectTransform>();
 		sprite = transform.Find("SpriteObject").GetComponent<SpriteRenderer>();
+		halo = sprite.transform.Find("Halo").GetComponent<SpriteRenderer>();
 		animator = sprite.GetComponent<Animator>();
 		gs = GameState.GetGameState();
 		shootTimer = 0.0f;
@@ -273,7 +275,26 @@ public class PlayerController : MonoBehaviour
             aimTransform = transform.Find("AimObject");
         }
 		aimTransform.gameObject.SetActive(environmentType == EnvironmentType.Green);
+		SetHalo(environmentType);
 		//PowerUp.ReverseControls(environmentType == EnvironmentType.Green);
+	}
+
+	private void SetHalo(EnvironmentType environmentType)
+	{
+		Color color = new Color(0,0,0,1);
+		switch(environmentType)
+		{
+			case EnvironmentType.Red:
+				color = new Color(1, 0, 0, 1);
+				break;
+			case EnvironmentType.Green:
+				color = new Color(0, 1, 0, 1);
+				break;
+			case EnvironmentType.Blue:
+				color = new Color(0, 0, 1, 1);
+				break;
+		}
+		halo.color = color;
 	}
 
 	private void ShootRed()
@@ -358,5 +379,4 @@ public class PlayerController : MonoBehaviour
 	{
 		//playercontrol.GamePlay.Disable();
 	}
-
 }
