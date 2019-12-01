@@ -9,6 +9,8 @@ TagManager:
   - Projectile
   - Area
   - Meteor
+  - Enemy
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -5,6 +5,7 @@ public class Projectile : MonoBehaviour
 	public float bounceMagnitude = 30;
 	public int HP = 3;
 	public int hitDamage = 5;
+	public GameObject particlePrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +26,13 @@ public class Projectile : MonoBehaviour
 		if(collision.gameObject.tag == Names.PLAYER_TAG)
 		{
 			collision.gameObject.GetComponent<PlayerController>().Hit(hitDamage);
+			Instantiate(particlePrefab, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
 		}
 		else if(collision.gameObject.tag == Names.ENEMY_TAG)
 		{
 			collision.gameObject.GetComponent<EnemyAI>().Hit(hitDamage);
+			Instantiate(particlePrefab, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
 		}
 		else
