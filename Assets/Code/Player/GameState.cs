@@ -47,7 +47,8 @@ public class GameState : MonoBehaviour
 	public int spawnCount = 4;
 	public int bossSpawnCount = 10;
 
-	public float spawnTimerSeconds = 0.6f;
+	public float spawnTimerSeconds = 3.0f;
+	public float playerSpawnSeconds = 0.6f;
 	public float greenSpawnTimerSeconds = 0.3f;
 	public float SpawnRadius = 3.0f;
 

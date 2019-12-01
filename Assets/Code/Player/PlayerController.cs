@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 				if(shootTimer <= 0.0f)
 				{
 					ShootRed();
-					shootTimer = gs.spawnTimerSeconds;
+					shootTimer = gs.playerSpawnSeconds;
 				}			
 				break;
 			case EnvironmentType.Blue:
