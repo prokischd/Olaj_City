@@ -6,7 +6,8 @@ public class Projectile : MonoBehaviour
 	public int HP = 3;
 	public int hitDamage = 5;
 	public bool spawnedByPlayer = false;
-    // Start is called before the first frame update
+	public GameObject particlePrefab;
+
     void Start()
     {
 		Destroy(this.gameObject, 8);
@@ -26,11 +27,13 @@ public class Projectile : MonoBehaviour
 		if(collision.gameObject.tag == Names.PLAYER_TAG)
 		{
 			collision.gameObject.GetComponent<PlayerController>().Hit(hitDamage);
+			Instantiate(particlePrefab, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
 		}
 		else if(collision.gameObject.tag == Names.ENEMY_TAG)
 		{
 			collision.gameObject.GetComponent<EnemyAI>().Hit(hitDamage);
+			Instantiate(particlePrefab, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
 		}
 		else
