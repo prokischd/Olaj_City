@@ -11,6 +11,8 @@ TagManager:
   - Meteor
   - Enemy
   - Ground
+  - CHANGE_GROUND
+  - GreenBar
   layers:
   - Default
   - TransparentFX
