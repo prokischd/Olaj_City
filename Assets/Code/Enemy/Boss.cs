@@ -8,10 +8,12 @@ public class Boss : MonoBehaviour
 	public int HP = 500;
 	private Animator animator;
 	public GameObject boss;
-	public Transform location1;
-	public Transform location2;
-	public Transform location3;
-	public Transform location4;
+
+
+	// public Transform location1;
+	// public Transform location2;
+	// public Transform location3;
+	// public Transform location4;
 	private List<Transform> locations = new List<Transform>();
 	private GameState gs;
 
@@ -29,10 +31,15 @@ public class Boss : MonoBehaviour
 	{
 		gs = GameState.GetGameState();
 		boss.SetActive(false);
-		locations.Add(location1);
-		locations.Add(location2);
-		locations.Add(location3);
-		locations.Add(location4);
+		GameObject children;
+		children=transform.GetChild(1).gameObject;
+		for(int i=0; i<children.transform.childCount;i++){
+			locations.Add(transform.GetChild(1).transform.GetChild(i).transform);
+		}
+		// locations.Add(location1);
+		// locations.Add(location2);
+		// locations.Add(location3);
+		// locations.Add(location4);
 		animator = transform.Find("Boss_Devil_Prefab").GetComponent<Animator>();
 	}
 	private bool canStart = true;
