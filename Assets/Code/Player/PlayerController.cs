@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 	private GameState gs;
 	private Vector3 lastMoveDir = Vector3.zero;
 	private Animator animator;
+	private Animator camAnimator;
 	private LayerMask mask = 8;
 	private Vector3 vel;
 	private float smoothDamp = 0.2f;
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
 		aimTransform = transform.Find("AimObject");
 		MoveDirection = Vector2.zero;
 		playerStats = GetComponent<PlayerStats>();
-
+		camAnimator=GameObject.Find("CameraObj").GetComponent<Animator>();
 		playercontrol.GamePlay.Enable();
 		playercontrol.GamePlay.Move.performed += Move;
 		playercontrol.GamePlay.Move.canceled += Stop;
@@ -210,6 +211,7 @@ public class PlayerController : MonoBehaviour
 
 	public void Hit(int hitDamage)
 	{
+		camAnimator.SetTrigger("gotHurt");
 		animator.SetTrigger("gotHit");
 		playerStats.LoseHP(hitDamage);
 	}
