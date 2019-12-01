@@ -89,7 +89,7 @@ public class GameState : MonoBehaviour
 		DEFAULT_SPAWN_PROJECTILE_FORCE = spawnerProjectileForce;
 		player = GameObject.FindWithTag(Names.PLAYER_TAG);
 		lastEnvironmentType = EnvironmentType.Green;
-		ActiveEnvironment = EnvironmentType.Red;
+		ActiveEnvironment = EnvironmentType.Green;
 	}
 
 	public void ResetGameStateToDefault()

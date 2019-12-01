@@ -34,8 +34,11 @@ public class PlayerController : MonoBehaviour
 	private Vector3 vel;
 	private float smoothDamp = 0.2f;
 
+	private RectTransform blueBar;
+
 	void Start()
     {
+		blueBar = GameObject.FindGameObjectWithTag("BlueBar").GetComponent<RectTransform>();
 		sprite = transform.Find("SpriteObject").GetComponent<SpriteRenderer>();
 		animator = sprite.GetComponent<Animator>();
 		gs = GameState.GetGameState();
@@ -252,20 +255,6 @@ public class PlayerController : MonoBehaviour
 		this.environmentType = environmentType;
 		aimTransform.gameObject.SetActive(environmentType == EnvironmentType.Green);
 		PowerUp.ReverseControls(environmentType == EnvironmentType.Green);
-		Slide(environmentType == EnvironmentType.Blue);
-
-	}
-
-	private void Slide(bool v)
-	{
-		if(v)
-		{
-			rb.angularDrag = 5;
-		}
-		else
-		{
-			rb.angularDrag = 0;
-		}
 	}
 
 	private void ShootRed()
@@ -319,13 +308,31 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+
 	public void ManagePowerUpTimer()
 	{
 		gs.powerUpTimer -= Time.deltaTime;
+		RefreshPorweupUI(gs.powerUpTimer);
 		if(gs.powerUpTimer <= 0)
 		{
 			LoseHpEverySecond();
 		}
+	}
+
+
+	private void RefreshPorweupUI(float timer)
+	{
+		if(blueBar == null)
+		{
+			return;
+		}
+		var newScale = blueBar.localScale;
+		newScale.x = timer / 15.0f;
+		if(timer <= 0)
+		{
+			newScale.x = 0;
+		}
+		blueBar.localScale = newScale;
 	}
 
 	internal void Die()
