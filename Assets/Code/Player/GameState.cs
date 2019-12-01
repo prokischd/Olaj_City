@@ -45,7 +45,9 @@ public class GameState : MonoBehaviour
 	public float spawnerProjectileForce = DEFAULT_SPAWN_PROJECTILE_FORCE;
     public float meteorSpeed = DEFAULT_METEOR_SPEED;
 	public int spawnCount = 4;
-    public float spawnTimerSeconds = 0.6f;
+	public int bossSpawnCount = 10;
+
+	public float spawnTimerSeconds = 0.6f;
 	public float greenSpawnTimerSeconds = 0.3f;
 	public float SpawnRadius = 3.0f;
 
