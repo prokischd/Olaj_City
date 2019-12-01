@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 6355744124888099820, guid: 71ed5e32f7742454db3b40eb724dc0cc,
         type: 3}
       propertyPath: m_Name
-      value: Projectile_Blue
+      value: Projectile_Blue Variant
       objectReference: {fileID: 0}
     - target: {fileID: 9124214781147450306, guid: 71ed5e32f7742454db3b40eb724dc0cc,
         type: 3}
@@ -81,6 +81,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3312487924443543599, guid: 71ed5e32f7742454db3b40eb724dc0cc,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71ed5e32f7742454db3b40eb724dc0cc, type: 3}
