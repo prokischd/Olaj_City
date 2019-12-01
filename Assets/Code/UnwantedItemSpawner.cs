@@ -5,7 +5,7 @@ using UnityEngine;
 public class UnwantedItemSpawner : MonoBehaviour
 {
     public float timer = 0.0f;
-    private float frequency = 6.0f;
+    private float frequency = 10.0f;
     [HideInInspector]
     public bool hasNoItem;
     public GameObject unwantedItem;
