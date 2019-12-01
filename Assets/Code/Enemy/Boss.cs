@@ -52,7 +52,7 @@ public class Boss : MonoBehaviour
 		}
 		if(HP <= 0)
 		{
-
+			Destroy(this.gameObject);
 		}
 		timer += Time.deltaTime;
 	}
