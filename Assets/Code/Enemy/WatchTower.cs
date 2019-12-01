@@ -6,7 +6,7 @@ public class WatchTower : MonoBehaviour
 	public UnityEngine.Object redObject;
 	public UnityEngine.Object blueObject;
 	public UnityEngine.Object greenObject;
-	public float spawnTime = 1.0f;
+	public float spawnTime = 2.5f;
 	public float spawnerForce = 120.0f;
 
 

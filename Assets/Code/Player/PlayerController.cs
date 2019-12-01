@@ -273,7 +273,7 @@ public class PlayerController : MonoBehaviour
             aimTransform = transform.Find("AimObject");
         }
 		aimTransform.gameObject.SetActive(environmentType == EnvironmentType.Green);
-		PowerUp.ReverseControls(environmentType == EnvironmentType.Green);
+		//PowerUp.ReverseControls(environmentType == EnvironmentType.Green);
 	}
 
 	private void ShootRed()
