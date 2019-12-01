@@ -268,7 +268,7 @@ public class PlayerController : MonoBehaviour
 
 	public void Heal()
 	{
-		playerStats.GiveHP(3);
+		playerStats.GiveHP(1);
 	}
 
 
