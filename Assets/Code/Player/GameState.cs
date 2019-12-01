@@ -107,9 +107,9 @@ public class GameState : MonoBehaviour
 	public void SetEnvironment(EnvironmentType lastEnvironmentType, EnvironmentType activeEnvironmentType)
 	{
 		PowerUp.Action();
+		player.GetComponent<PlayerController>().SetState(activeEnvironmentType);
 		if(lastEnvironmentType != activeEnvironmentType)
 		{
-			player.GetComponent<PlayerController>().SetState(activeEnvironmentType);
 			SetMap(lastEnvironmentType, activeEnvironmentType);
 		}
 	}

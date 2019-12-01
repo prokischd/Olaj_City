@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -58,6 +59,17 @@ public class PlayerController : MonoBehaviour
 		playercontrol.GamePlay.Dash.performed += Dash;
 	}
 
+    void OnDestroy()
+    {
+        destroyed = true;
+        playercontrol.GamePlay.Move.performed -= Move;
+        playercontrol.GamePlay.Move.canceled -= Stop;
+        playercontrol.GamePlay.Aim.performed -= ControllerRightStick;
+        
+        playercontrol.GamePlay.Shoot.performed -= Shoot;
+        playercontrol.GamePlay.Dash.performed -= Dash;
+    }
+
 	void Update()
 	{
 		HandleEnvironmentAbilities();
@@ -65,13 +77,13 @@ public class PlayerController : MonoBehaviour
 		ManagePowerUpTimer();
 		shootTimer -= Time.deltaTime;
 		dashTimer -= Time.deltaTime;
-	}
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            gs.ResetGameStateToDefault();
+            Application.LoadLevel(0);
+        }
+    }
 	bool destroyed = false;
-	private void OnDestroy()
-	{
-		destroyed = true;
-	}
-
 	#region INPUT
 	private void Dash(InputAction.CallbackContext obj)
 	{
@@ -104,7 +116,7 @@ public class PlayerController : MonoBehaviour
 				if(shootTimer <= 0.0f)
 				{
 					ShootGreen();
-					shootTimer = gs.greenSpawnTimerSeconds;
+    				shootTimer = gs.greenSpawnTimerSeconds;
 				}			
 				break;
 		}
@@ -125,7 +137,10 @@ public class PlayerController : MonoBehaviour
 			MoveDirection = obj.ReadValue<Vector2>();
 		}
 
-		animator.SetBool("isWalking", true);
+        if (!destroyed)
+        {
+		    animator.SetBool("isWalking", true);
+        }
 		
 		sprite.flipX = MoveDirection.x < 0;
 	}
@@ -253,6 +268,10 @@ public class PlayerController : MonoBehaviour
 	public void SetState(EnvironmentType environmentType)
 	{
 		this.environmentType = environmentType;
+        if(aimTransform == null)
+        {
+            aimTransform = transform.Find("AimObject");
+        }
 		aimTransform.gameObject.SetActive(environmentType == EnvironmentType.Green);
 		PowerUp.ReverseControls(environmentType == EnvironmentType.Green);
 	}

@@ -64,7 +64,7 @@ public class PowerUp : MonoBehaviour
     public static void SlowerSpeed()
     {
         GameState gs = GameState.GetGameState();
-        gs.playerMovementSpeed -= 0.1f;
+        gs.playerMovementSpeed -= 0.06f;
     }
 
     public static void ReverseControls(bool enabled)
@@ -93,7 +93,7 @@ public class PowerUp : MonoBehaviour
     public static void SlowerTime()
     {
         GameState gs = GameState.GetGameState();
-        gs.playerMovementSpeed -= 0.1f;
+        gs.playerMovementSpeed -= 0.06f;
         gs.playerProjectileForce -= 5f;
         gs.enemyMovementSpeed -= 0.1f;
         gs.spawnerProjectileForce -= 0.5f;
