@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-	public int HP = 500;
+	public int HP = 200;
 	private Animator animator;
 	public GameObject boss;
 
@@ -60,6 +60,10 @@ public class Boss : MonoBehaviour
 		int idx = rng.Next(locations.Count);
 		currentLocation = locations[idx];
 		boss.transform.position = currentLocation.position;
+		SpawnProjectiles();
+		yield return new WaitForSeconds(3.0f);
+		SpawnProjectiles();
+		yield return new WaitForSeconds(3.0f);
 		SpawnProjectiles();
 		yield return new WaitForSeconds(3.0f);
 		SpawnProjectiles();
