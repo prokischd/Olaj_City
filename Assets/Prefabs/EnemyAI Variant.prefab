@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 8568931550872678290, guid: 6ea496480cb8570449014a9408580c07,
         type: 3}
       propertyPath: m_Name
-      value: EnemyAI
+      value: EnemyAI Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7123554830252315145, guid: 6ea496480cb8570449014a9408580c07,
         type: 3}
@@ -72,6 +72,5 @@ PrefabInstance:
       propertyPath: movementSpeed
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1922900745, guid: 6ea496480cb8570449014a9408580c07, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ea496480cb8570449014a9408580c07, type: 3}

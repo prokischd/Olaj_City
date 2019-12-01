@@ -14,12 +14,14 @@ public class EnemyAI : MonoBehaviour
 	private bool chasing = false;
 	private Animator animator;
 	private SpriteRenderer sprite;
+	private Spawner spawner;
 	// Start is called before the first frame update
 	void Start()
     {
 		sprite = GetComponent<SpriteRenderer>();
 		animator = GetComponent<Animator>();
-		if(GetComponent<Spawner>() is Spawner spawner)
+		spawner = GetComponent<Spawner>();
+		if(spawner != null)
 		{
 			spawner.enabled = false;
 		}
@@ -54,7 +56,7 @@ public class EnemyAI : MonoBehaviour
 				this.transform.Translate(dir.normalized * movementSpeed * Time.deltaTime);
 				sprite.flipX = dir.x < 0;
 			}
-			else
+			else if(spawner == null)
 			{
 				playerObject.GetComponent<PlayerController>().Hit(15);
 				Destroy(this.gameObject);
